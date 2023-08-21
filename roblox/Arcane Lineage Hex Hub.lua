@@ -102,7 +102,7 @@ local Window = OrionLib:MakeWindow({
 
 local PlayerSec = Window:MakeTab({
     Name = "Character",
-    Icon = "rbxassetid://5009915795",
+    Icon = "rbxassetid://14516565815",
     PremiumOnly = false
 })
 
@@ -223,7 +223,7 @@ PlayerSec:AddSlider({
 
 local Combat = Window:MakeTab({
     Name = "Combat",
-    Icon = "rbxassetid://5009915795",
+    Icon = "rbxassetid://14516565815",
     PremiumOnly = false
 })
 
@@ -353,7 +353,7 @@ Combat:AddDropdown({
 
 local Automation = Window:MakeTab({
     Name = "Automation",
-    Icon = "rbxassetid://12614663538",
+    Icon = "rbxassetid://14516565815",
     PremiumOnly = false
 })
 
@@ -513,7 +513,7 @@ Brew:AddToggle({
                 OrionLib:MakeNotification({
                     Name = "Missing Required Ingredient For:",
                     Content = tostring(Potion),
-                    Image = "rbxassetid://12614663538",
+                    Image = "rbxassetid://14516527220",
                     Time = 5
                 })
             end
@@ -530,7 +530,7 @@ Brew:AddToggle({
 
 local Merchant = Window:MakeTab({
     Name = "Merchant",
-    Icon = "rbxassetid://12614663538",
+    Icon = "rbxassetid://14516565815",
     PremiumOnly = false
 })
 
@@ -548,7 +548,7 @@ Merchant:AddToggle({
                 OrionLib:MakeNotification({
                     Name = "Merchant Detected!",
                     Content = "The Mysterious Merchant Is Spawned!",
-                    Image = "rbxassetid://12614663538",
+                    Image = "rbxassetid://14516527220",
                     Time = 5
                 })
                 task.wait(5)
@@ -567,7 +567,7 @@ Merchant:AddButton({
             OrionLib:MakeNotification({
                 Name = "No Merchant Detected!",
                 Content = "Cannot Teleport To Merchant, Not Spawned!",
-                Image = "rbxassetid://12614663538",
+                Image = "rbxassetid://14516527220",
                 Time = 5
             })
         end
@@ -578,7 +578,7 @@ Merchant:AddButton({
 
 local Teleports = Window:MakeTab({
     Name = "Teleports",
-    Icon = "rbxassetid://12614663538",
+    Icon = "rbxassetid://14516565815",
     PremiumOnly = false
 })
 
@@ -660,7 +660,7 @@ Teleports:AddDropdown({
 
 local Misc = Window:MakeTab({
     Name = "Misc",
-    Icon = "rbxassetid://12614663538",
+    Icon = "rbxassetid://14516565815",
     PremiumOnly = false
 })
 

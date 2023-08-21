@@ -1,5 +1,3 @@
--- [ KEEP IN MIND: NOTE: IM NOT THE CREATOR OF THIS SCRIPT, I ONLY MODDED IT FOR MY OWN USE. ALL CREDITS GOES TO (OneFool)
-
 -- THIS SCRIPT WAS MADE FOR PERSONAL USE MEANING IT HAS VERY LITTLE OPTIMIZATION.
 
 repeat
@@ -94,7 +92,7 @@ end
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/OneFool/intro/main/custom%20intro%20orion')))()
 local Window = OrionLib:MakeWindow({
-    Name = "Hex Hub [Arc. Lin.]",
+    Name = "Hex Hub ",
     HidePremium = false,
     SaveConfig = true,
     ConfigFolder = "FoolArcLin"
@@ -397,7 +395,7 @@ local Brew = Automation:AddSection({
 Brew:AddDropdown({
     Name = "Potion To Auto Brew",
     Default = "",
-    Options = { "Heartbreaking Elixir", "Heartsoothing Remedy", "Abhorrent Elixir", "Alluring Elixir" },
+    Options = { "Heartbreaking Elixir", "Heartsoothing Remedy", "Minor Energy Elixir", "Abhorrent Elixir", "Alluring Elixir" },
     Callback = function(Value)
         Potion = Value
     end
@@ -470,13 +468,13 @@ Brew:AddToggle({
                 getproximity()
                 task.wait(0.1)
                 getclicker()
-             elseif Potion == "Minor Energy Elixir" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Carnastool") then
+            elseif Potion == "Minor Energy Elixir" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Cryastem") then
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
                 local ohString1 = "Equip"
-                local ohString2 = "Carnastool"
+                local ohString2 = "Cryastem"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
                 task.wait(0.1)

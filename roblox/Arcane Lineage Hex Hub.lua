@@ -451,17 +451,6 @@ Brew:AddToggle({
                 getproximity()
                 task.wait(0.1)
                 getclicker()
-             elseif Potion == "Minor Energy Elixir" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Carnastool") then
-                local ohString1 = "Equip"
-                local ohString2 = "Everthistle"
-                game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
-                getproximity()
-                local ohString1 = "Equip"
-                local ohString2 = "Carnastool"
-                game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
-                getproximity()
-                task.wait(0.1)
-                getclicker()
             elseif Potion == "Heartsoothing Remedy" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Cryastem") then
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
@@ -477,6 +466,17 @@ Brew:AddToggle({
                 getproximity()
                 local ohString1 = "Equip"
                 local ohString2 = "Cryastem"
+                game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
+                getproximity()
+                task.wait(0.1)
+                getclicker()
+             elseif Potion == "Minor Energy Elixir" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Carnastool") then
+                local ohString1 = "Equip"
+                local ohString2 = "Everthistle"
+                game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
+                getproximity()
+                local ohString1 = "Equip"
+                local ohString2 = "Carnastool"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
                 task.wait(0.1)

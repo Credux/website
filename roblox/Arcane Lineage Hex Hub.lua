@@ -94,7 +94,7 @@ end
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/OneFool/intro/main/custom%20intro%20orion')))()
 local Window = OrionLib:MakeWindow({
-    Name = "Fool Hub | Arcane Lineage",
+    Name = "Hex Hub [Arc. Lin.]",
     HidePremium = false,
     SaveConfig = true,
     ConfigFolder = "FoolArcLin"

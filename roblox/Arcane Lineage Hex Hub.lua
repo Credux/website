@@ -1,11 +1,13 @@
--- Made by One Fool (ORIGINAL) I Remake this, Thanks alot
+-- [ KEEP IN MIND: NOTE: IM NOT THE CREATOR OF THIS SCRIPT, I ONLY MODDED IT FOR MY OWN USE. ALL CREDITS GOES TO (OneFool)
+
+-- THIS SCRIPT WAS MADE FOR PERSONAL USE MEANING IT HAS VERY LITTLE OPTIMIZATION.
+
 repeat
     wait()
 until game:IsLoaded()
 wait()
 
--- Not my adonis bypasses - Everything else made by me (OneFool
-)
+-- Not my adonis bypasses - Everything else made by me (OneFool)
 for k, v in pairs(getgc(true)) do
     if pcall(function() return rawget(v, "indexInstance") end) and type(rawget(v, "indexInstance")) == "table" and (rawget(v, "indexInstance"))[1] == "kick" then
         v.tvk = { "kick", function() return game.Workspace:WaitForChild("") end }
@@ -45,7 +47,7 @@ local NPCList = {}
 local QuestNPCList = {}
 local Moves = {}
 local lp = game:GetService("Players").LocalPlayer
-local BlacklistedNPC = { "Quest", "Filler", "PurgNPC", "ExampleNPC", "Pup 1", "Pup 2", "Pup 3" }
+local BlacklistedNPC = { "Quest", "Filler", "Aretim", "PurgNPC", "ExampleNPC", "Pup 1", "Pup 2", "Pup 3" }
 local aux = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Upbolt/Hydroxide/revision/ohaux.lua"))()
 
 function checkforfight()
@@ -92,7 +94,7 @@ end
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/OneFool/intro/main/custom%20intro%20orion')))()
 local Window = OrionLib:MakeWindow({
-    Name = "Hex Hub",
+    Name = "Fool Hub | Arcane Lineage",
     HidePremium = false,
     SaveConfig = true,
     ConfigFolder = "FoolArcLin"
@@ -483,17 +485,6 @@ Brew:AddToggle({
                 getproximity()
                 local ohString1 = "Equip"
                 local ohString2 = "Cryastem"
-                game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
-                getproximity()
-                task.wait(0.1)
-                getclicker()
-           elseif Potion == "Minor Energy Elixir" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Carnastool") then
-                local ohString1 = "Equip"
-                local ohString2 = "Everthistle"
-                game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
-                getproximity()
-                local ohString1 = "Equip"
-                local ohString2 = "Carnastool"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
                 task.wait(0.1)

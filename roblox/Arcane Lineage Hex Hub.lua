@@ -731,9 +731,5 @@ local AntiAFK = Misc:AddSection({
     Name = "Anti-AFK Built In"
 })
 
-local IDK = Misc:AddSection({
-    Name = "Info:" .. lp.Character.HumanoidRootPart.CFrame .. "#"
-})
-
 
 OrionLib:Init()

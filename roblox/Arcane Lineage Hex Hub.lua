@@ -660,14 +660,14 @@ Teleports:AddDropdown({
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
         elseif Value == "Thorian Gate2" then
-            local CFrameEnd = CFrame.new(2320.21777, 24.3336258, -450.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+            local CFrameEnd = CFrame.new(2325.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
                 -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
         elseif Value == "Thorian Gate3" then
-            local CFrameEnd = CFrame.new(2320.21777, 24.3336258, -429.789001, -1.00241308, -1.32400935e-08, 0.693723619,
+            local CFrameEnd = CFrame.new(2330.21777, 24.3336258, -429.789001, -1.00241308, -1.32400935e-08, 0.693723619,
                 -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,

@@ -565,7 +565,7 @@ Merchant:AddButton({
                 "Mysterious Merchant").HumanoidRootPart.CFrame
         else
             OrionLib:MakeNotification({
-                Name = "No Merchant Detected!",
+                Name = "THIS IS NOT FUCKNIG HAPPENING",
                 Content = "[" .. lp.Character.HumanoidRootPart.CFrame .. "]",
                 Image = "rbxassetid://14516527220",
                 Time = 5

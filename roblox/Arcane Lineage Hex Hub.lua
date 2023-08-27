@@ -159,7 +159,12 @@ PlayerSec:AddButton({
     Name = "Heal At Doctor",
     Callback = function()
         local oldcframe = lp.Character.HumanoidRootPart.CFrame
-
+            OrionLib:MakeNotification({
+                Name = "Saved Position X,Y",
+                Content = "Positioning: " .. lp.Character.HumanoidRootPart.CFrame,
+                Image = "rbxassetid://14516527220",
+                Time = 5
+            })
         lp.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").NPCs.Doctor.Head
             .CFrame
         task.wait(0.4)
@@ -564,10 +569,9 @@ Merchant:AddButton({
             lp.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").NPCs:FindFirstChild(
                 "Mysterious Merchant").HumanoidRootPart.CFrame
         else
-            local CharacterPostioning = lp.Character.HumanoidRootPart.CFrame
             OrionLib:MakeNotification({
-                Name = "TEST",
-                Content = "E " .. CharacterPostioning,
+                Name = "Merchant Not Found!",
+                Content = "Merchant is Not Here Yet.",
                 Image = "rbxassetid://14516527220",
                 Time = 5
             })

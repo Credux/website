@@ -566,7 +566,24 @@ Merchant:AddButton({
         else
             OrionLib:MakeNotification({
                 Name = "No Merchant Detected!",
-                Content = "Cannot Teleport To Merchant, Not Spawned!",
+                Content = "[" .. lp.Character.HumanoidRootPart.CFrame .. "]",
+                Image = "rbxassetid://14516527220",
+                Time = 5
+            })
+        end
+    end
+})
+
+Merchant:AddButton({
+    Name = "TEST",
+    Callback = function()
+        if game:GetService("Workspace").NPCs:FindFirstChild("Mysterious Merchant") then
+            lp.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").NPCs:FindFirstChild(
+                "Mysterious Merchant").HumanoidRootPart.CFrame
+        else
+            OrionLib:MakeNotification({
+                Name = "TEST",
+                Content = "[" .. lp.Character.HumanoidRootPart.CFrame .. "]",
                 Image = "rbxassetid://14516527220",
                 Time = 5
             })
@@ -614,7 +631,7 @@ Teleports:AddDropdown({
     Name = "Specific Places",
     Default = "",
     Options = { "Caldera Spawn", "Ruins Spawn", "Westwood Spawn", "Blades Spawn", "Yar'thul Gate",
-        "Thorian Gate", "Get Location" },
+        "Thorian Gate" },
     Callback = function(Value)
         if Value == "Caldera Spawn" then
             local CFrameEnd = CFrame.new(-221.396332, 46.5463257, -3328.51367, -1, 0, 0, 0, 1, 0, 0, 0, -1)
@@ -654,14 +671,6 @@ Teleports:AddDropdown({
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
-        elseif Value == "Get Location" then
-       local CFrameEnd = CFrame.new()
-       OrionLib:MakeNotification({
-         Name = "Location Info:",
-         Content = "[" .. CFrameEnd .. "]",
-         Image = "rbxassetid://14516527220",
-         Time = 5
-       })
         end
     end
 })
@@ -672,6 +681,12 @@ Teleports:AddButton({
        OrionLib:MakeNotification({
          Name = "Location Info:",
          Content = "[" .. CFrame .. "]",
+         Image = "rbxassetid://14516527220",
+         Time = 5
+       })
+       OrionLib:MakeNotification({
+         Name = "Location Info:",
+         Content = "[testing]",
          Image = "rbxassetid://14516527220",
          Time = 5
        })

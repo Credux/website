@@ -565,7 +565,7 @@ Merchant:AddButton({
                 "Mysterious Merchant").HumanoidRootPart.CFrame
         else
             OrionLib:MakeNotification({
-                Name = "THIS IS NOT FUCKNIG HAPPENING",
+                Name = "i forfeit",
                 Content = "[" .. lp.Character.HumanoidRootPart.CFrame .. "]",
                 Image = "rbxassetid://14516527220",
                 Time = 5
@@ -706,7 +706,7 @@ local Misc = Window:MakeTab({
 })
 
 local Rollback = Misc:AddSection({
-    Name = "Enable then drop the item(s) to another account then rejoin/leave"
+    Name = lp.Character.HumanoidRootPart.CFrame
 })
 
 Rollback:AddButton({

@@ -629,7 +629,7 @@ Teleports:AddDropdown({
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
-        elseif Value == "Ruins Spawn (Sand Town)" then
+        elseif Value == "Ruins Spawn" then
             local CFrameEnd = CFrame.new(-2507.97217, 45.1969986, -2928.76367, 1, 0, 0, 0, 1, 0, 0, 0, 1)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
@@ -654,7 +654,7 @@ Teleports:AddDropdown({
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
-        else
+        elseif Value == "Get Location" then
        OrionLib:MakeNotification({
          Name = "Location Info:",
          Content = "[" .. CFrame .. "]",

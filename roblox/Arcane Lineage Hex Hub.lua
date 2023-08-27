@@ -654,49 +654,49 @@ Teleports:AddDropdown({
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
         elseif Value == "Thorian Gate2" then
-            local CFrameEnd = CFrame.new(2315.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+            local CFrameEnd = CFrame.new(2355.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
                 -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
         elseif Value == "Thorian Gate3" then
-            local CFrameEnd = CFrame.new(2265.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+            local CFrameEnd = CFrame.new(2345.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
                 -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
         elseif Value == "Thorian Gate4" then
-            local CFrameEnd = CFrame.new(2215.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+            local CFrameEnd = CFrame.new(2335.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
                 -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
         elseif Value == "Thorian Gate5" then
-            local CFrameEnd = CFrame.new(2165.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+            local CFrameEnd = CFrame.new(2325.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
                 -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
         elseif Value == "Thorian Gate6" then
-            local CFrameEnd = CFrame.new(2115.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+            local CFrameEnd = CFrame.new(2315.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
                 -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
         elseif Value == "Thorian Gate7" then
-            local CFrameEnd = CFrame.new(2065.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+            local CFrameEnd = CFrame.new(2305.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
                 -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
         elseif Value == "Thorian Gate8" then
-            local CFrameEnd = CFrame.new(2015.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+            local CFrameEnd = CFrame.new(2295.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
                 -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,

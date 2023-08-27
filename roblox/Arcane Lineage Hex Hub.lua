@@ -663,7 +663,7 @@ Teleports:AddButton({
     Callback = function()
        OrionLib:MakeNotification({
          Name = "Location Info:",
-         Content = CFrame,
+         Content = "[" .. CFrame .. "]",
          Image = "rbxassetid://14516527220",
          Time = 5
        })

@@ -637,7 +637,7 @@ Teleports:AddDropdown({
     Name = "Specific Places",
     Default = "",
     Options = { "Caldera Spawn", "Ruins Spawn", "Westwood Spawn", "Blades Spawn", "Yar'thul Gate",
-        "Thorian Gate" },
+        "Thorian Gate", "Thorian Inside", "Thorian Inside2" },
     Callback = function(Value)
         if Value == "Caldera Spawn" then
             local CFrameEnd = CFrame.new(-221.396332, 46.5463257, -3328.51367, -1, 0, 0, 0, 1, 0, 0, 0, -1)
@@ -678,6 +678,20 @@ Teleports:AddDropdown({
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
         end
+        elseif Value == "Thorian Inside" then
+            local CFrameEnd = CFrame.new(2615.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+                -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Thorian Inside2" then
+            local CFrameEnd = CFrame.new(2815.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+                -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
     end
 })
 

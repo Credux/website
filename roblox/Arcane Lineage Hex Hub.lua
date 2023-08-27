@@ -566,7 +566,7 @@ Merchant:AddButton({
         else
             OrionLib:MakeNotification({
                 Name = "i forfeit",
-                Content = "[" .. lp.Character.HumanoidRootPart.CFrame .. "]",
+                Content = "Merchant Gone",
                 Image = "rbxassetid://14516527220",
                 Time = 5
             })
@@ -705,11 +705,7 @@ local Misc = Window:MakeTab({
     PremiumOnly = false
 })
 
-local Rollback = Misc:AddSection({
-    Name = lp.Character.HumanoidRootPart.CFrame
-})
-
-Rollback:AddButton({
+Misc:AddButton({
     Name = "Enable Rollback",
     Callback = function()
         while task.wait() do
@@ -722,7 +718,7 @@ Rollback:AddButton({
     end
 })
 
-Rollback:AddButton({
+Misc:AddButton({
     Name = "Rejoin",
     Callback = function()
         local ts = game:GetService("TeleportService")
@@ -734,5 +730,10 @@ Rollback:AddButton({
 local AntiAFK = Misc:AddSection({
     Name = "Anti-AFK Built In"
 })
+
+local IDK = Misc:AddSection({
+    Name = "Info:" .. lp.Character.HumanoidRootPart.CFrame .. "#"
+})
+
 
 OrionLib:Init()

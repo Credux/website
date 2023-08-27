@@ -655,9 +655,10 @@ Teleports:AddDropdown({
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
         elseif Value == "Get Location" then
+       local CFrameEnd = CFrame.new()
        OrionLib:MakeNotification({
          Name = "Location Info:",
-         Content = "[" .. CFrame .. "]",
+         Content = "[" .. CFrameEnd .. "]",
          Image = "rbxassetid://14516527220",
          Time = 5
        })

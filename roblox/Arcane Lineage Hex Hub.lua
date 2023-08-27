@@ -564,9 +564,10 @@ Merchant:AddButton({
             lp.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").NPCs:FindFirstChild(
                 "Mysterious Merchant").HumanoidRootPart.CFrame
         else
+            local CharacterPostioning = lp.Character.HumanoidRootPart.CFrame
             OrionLib:MakeNotification({
-                Name = "i forfeit",
-                Content = "Merchant Gone",
+                Name = "TEST",
+                Content = "E " .. CharacterPostioning,
                 Image = "rbxassetid://14516527220",
                 Time = 5
             })
@@ -581,15 +582,10 @@ Merchant:AddButton({
             lp.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").NPCs:FindFirstChild(
                 "Mysterious Merchant").HumanoidRootPart.CFrame
         else
+            local CharacterPostioning = lp.Character.HumanoidRootPart.CFrame
             OrionLib:MakeNotification({
                 Name = "TEST",
-                Content = "E " .. lp.Character.HumanoidRootPart.CFrame .. ".",
-                Image = "rbxassetid://14516527220",
-                Time = 5
-            })
-            OrionLib:MakeNotification({
-                Name = "TEST",
-                Content = "it dont work.",
+                Content = "E " .. CharacterPostioning,
                 Image = "rbxassetid://14516527220",
                 Time = 5
             })
@@ -730,6 +726,5 @@ Misc:AddButton({
 local AntiAFK = Misc:AddSection({
     Name = "Anti-AFK Built In"
 })
-
 
 OrionLib:Init()

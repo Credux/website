@@ -583,7 +583,13 @@ Merchant:AddButton({
         else
             OrionLib:MakeNotification({
                 Name = "TEST",
-                Content = "[" .. lp.Character.HumanoidRootPart.CFrame .. "]",
+                Content = "E " .. lp.Character.HumanoidRootPart.CFrame .. ".",
+                Image = "rbxassetid://14516527220",
+                Time = 5
+            })
+            OrionLib:MakeNotification({
+                Name = "TEST",
+                Content = "it dont work.",
                 Image = "rbxassetid://14516527220",
                 Time = 5
             })

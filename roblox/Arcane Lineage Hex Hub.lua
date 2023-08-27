@@ -92,7 +92,7 @@ end
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/OneFool/intro/main/custom%20intro%20orion')))()
 local Window = OrionLib:MakeWindow({
-    Name = "Hex Hub ",
+    Name = "Hex Hub [Mobile]",
     HidePremium = false,
     SaveConfig = true,
     ConfigFolder = "FoolArcLin"
@@ -655,6 +655,18 @@ Teleports:AddDropdown({
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
         end
+    end
+})
+
+Teleports:AddButton({
+    Name = "Location Information",
+    Callback = function()
+       OrionLib:MakeNotification({
+         Name = "Location Info:",
+         Content = CFrame,
+         Image = "rbxassetid://14516527220",
+         Time = 5
+       })
     end
 })
 

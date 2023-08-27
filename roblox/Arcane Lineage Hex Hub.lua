@@ -613,8 +613,8 @@ Teleports:AddDropdown({
 Teleports:AddDropdown({
     Name = "Specific Places",
     Default = "",
-    Options = { "Caldera Spawn", "Ruins Spawn (Sand Town)", "Westwood Spawn", "Blades Spawn", "Yar'thul Gate",
-        "Thorian Gate" },
+    Options = { "Caldera Spawn", "Ruins Spawn", "Westwood Spawn", "Blades Spawn", "Yar'thul Gate",
+        "Thorian Gate", "Get Location" },
     Callback = function(Value)
         if Value == "Caldera Spawn" then
             local CFrameEnd = CFrame.new(-221.396332, 46.5463257, -3328.51367, -1, 0, 0, 0, 1, 0, 0, 0, -1)
@@ -654,6 +654,13 @@ Teleports:AddDropdown({
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
+        else
+       OrionLib:MakeNotification({
+         Name = "Location Info:",
+         Content = "[" .. CFrame .. "]",
+         Image = "rbxassetid://14516527220",
+         Time = 5
+       })
         end
     end
 })

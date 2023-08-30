@@ -1,4 +1,4 @@
--- save test 4
+-- save test 5
 
 repeat
     wait()
@@ -649,7 +649,7 @@ Teleports:AddDropdown({
         elseif Value == "Inferno Parkour Attempt1" then
 -- Correct path: decrease CFrame.new(-this, N/A, -this
 -- This too: CFrame.new(Front -Reverse, N/A, Left -Right
-            local CFrameEnd = CFrame.new(-4144.75781, 48.6970673, -2393.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
+            local CFrameEnd = CFrame.new(-4204.75781, 48.6970673, -2363.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
                 -6.00345373e-08, 1, 5.53878223e-08, -0.999921918, -5.93376726e-08, -0.0124968914)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
@@ -657,7 +657,7 @@ Teleports:AddDropdown({
             tween:Play()
                         elseif Value == "Inferno Parkour Attempt2" then
 -- Correct path: decrease CFrame.new(-this, N/A, -this
-            local CFrameEnd = CFrame.new(-4144.75781, 48.6970673, -2363.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
+            local CFrameEnd = CFrame.new(-4244.75781, 48.6970673, -2363.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
                 -6.00345373e-08, 1, 5.53878223e-08, -0.999921918, -5.93376726e-08, -0.0124968914)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
@@ -666,7 +666,7 @@ Teleports:AddDropdown({
                         elseif Value == "Inferno Parkour Attempt3" then
 -- Correct path: decrease CFrame.new(-this, N/A, -this
 -- This too: CFrame.new(Front -Reverse, N/A, Left -Right
-            local CFrameEnd = CFrame.new(-4144.75781, 48.6970673, -2333.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
+            local CFrameEnd = CFrame.new(-4284.75781, 48.6970673, -2363.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
                 -6.00345373e-08, 1, 5.53878223e-08, -0.999921918, -5.93376726e-08, -0.0124968914)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,

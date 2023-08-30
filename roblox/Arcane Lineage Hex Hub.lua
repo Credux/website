@@ -649,7 +649,7 @@ Teleports:AddDropdown({
         elseif Value == "Inferno Parkour Attempt1" then
 -- Correct path: decrease CFrame.new(-this, N/A, -this
 -- This too: CFrame.new(Front -Reverse, N/A, Left -Right
-            local CFrameEnd = CFrame.new(-4644.75781, 48.6970673, -2783.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
+            local CFrameEnd = CFrame.new(-3944.75781, 53.6970673, -2783.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
                 -6.00345373e-08, 1, 5.53878223e-08, -0.999921918, -5.93376726e-08, -0.0124968914)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
@@ -657,23 +657,25 @@ Teleports:AddDropdown({
             tween:Play()
                         elseif Value == "Inferno Parkour Attempt2" then
 -- Correct path: decrease CFrame.new(-this, N/A, -this
-            local CFrameEnd = CFrame.new(-4044.75781, 48.6970673, -3083.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
+            local CFrameEnd = CFrame.new(-3944.75781, 53.6970673, -2683.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
                 -6.00345373e-08, 1, 5.53878223e-08, -0.999921918, -5.93376726e-08, -0.0124968914)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
                         elseif Value == "Inferno Parkour Attempt3" then
--- local CFrameEnd = CFrame.new(Left -Right, Up -Down, Front -Back, idk, idk, idk,
-            local CFrameEnd = CFrame.new(3844.75781, 48.6970673, -3183.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
+-- Correct path: decrease CFrame.new(-this, N/A, -this
+-- This too: CFrame.new(Front -Reverse, N/A, Left -Right
+            local CFrameEnd = CFrame.new(-3944.75781, 53.6970673, -2583.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
                 -6.00345373e-08, 1, 5.53878223e-08, -0.999921918, -5.93376726e-08, -0.0124968914)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
                 TweenInfo.new(Time), { CFrame = CFrameEnd })
             tween:Play()
                         elseif Value == "Inferno Parkour Attempt4" then
--- local CFrameEnd = CFrame.new(Left -Right, Up -Down, Front -Back, idk, idk, idk,
-            local CFrameEnd = CFrame.new(-3644.75781, 48.6970673, -3383.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
+-- Correct path: decrease CFrame.new(-this, N/A, -this
+-- This too: CFrame.new(Front -Reverse, N/A, Left -Right
+            local CFrameEnd = CFrame.new(-3944.75781, 53.6970673, -2483.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
                 -6.00345373e-08, 1, 5.53878223e-08, -0.999921918, -5.93376726e-08, -0.0124968914)
             local Time = 0
             local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,

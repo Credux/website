@@ -1,4 +1,4 @@
--- save test 9
+-- save test 8
 
 repeat
     wait()

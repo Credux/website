@@ -226,6 +226,7 @@ local Combat = Window:MakeTab({
     PremiumOnly = false
 })
 
+
 Combat:AddToggle({
     Name = "Auto-Dodge",
     Default = false,
@@ -235,7 +236,7 @@ Combat:AddToggle({
         getgenv().AutoDodge = (Value)
 
         while AutoDodge do
-task.wait()
+ task.wait()
 local old
 old = hookmetamethod(game, "__namecall", function(self, ...)
   if self.Name == "RemoteFunction" and getnamecallmethod() == "FireServer" then
@@ -247,10 +248,11 @@ old = hookmetamethod(game, "__namecall", function(self, ...)
   end
   return old(self, ...)
 end)
-task.wait()
+            task.wait()
         end
     end
 })
+
 
 Combat:AddToggle({
     Name = "Auto-QTE",

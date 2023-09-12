@@ -296,11 +296,32 @@ end)
 
                 -- Thief
             elseif BaseClass == "Thief" then
-                local ohBoolean1 = true
-                local ohString2 = "DaggerQTE"
-                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
-                lp.PlayerGui.Combat.DaggerQTE.Visible = false
+for i,v in next, getgc() do
+ if typeof(v) == "function" and islclosure(v) and not isexecutorclosure(v) then
+     local Constants = debug.getconstants(v)
+   
+     if table.find(Constants, "Detected") and table.find(Constants, "crash") then
+         setthreadidentity(2)
+         hookfunction(v, function()
+             return task.wait(9e9)
+         end)
+         setthreadidentity(7)
+     end
+ end
+end
 
+task.wait()
+local old
+old = hookmetamethod(game, "namecall", function(self, ...)
+  if self.Name == "RemoteFunction" and getnamecallmethod() == "FireServer" then
+      local args = {...}
+      if args[2] == "DaggerQTE" then
+       args[1] = true
+       return old(self, unpack(args))
+      end
+  end
+  return old(self, ...)
+end)
                 -- Slayer
             elseif BaseClass == "Slayer" then
                 local ohBoolean1 = true

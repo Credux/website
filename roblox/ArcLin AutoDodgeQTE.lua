@@ -1,5 +1,4 @@
--- WeaponList:
--- "Spear", "Magic", "Dagger", "Fist", "Sword"
+-- Doesnt have any switches for now, so make sure you leave if you wanna disactivate
 local Weapon = lp.PlayerGui:WaitForChild("StatMenu").Holder.BaseClassVal.Text
 
 -- Anti-Cheat Adonis Bypasser

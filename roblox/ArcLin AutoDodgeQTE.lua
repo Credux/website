@@ -1,6 +1,6 @@
 -- WeaponList:
 -- "Spear", "Magic", "Dagger", "Fist", "Sword"
-local Weapon = "Sword"
+local Weapon = lp.PlayerGui:WaitForChild("StatMenu").Holder.BaseClassVal.Text
 
 -- Anti-Cheat Adonis Bypasser
 for k, v in pairs(getgc(true)) do

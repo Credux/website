@@ -7,7 +7,7 @@ local old2
 old2 = hookmetamethod(game, "__namecall", function(self, ...)
   if self.Name == "RemoteFunction" and getnamecallmethod() == "FireServer" then
       local args = {...}
-      if args[2] == Weapon.."QTE" then
+      if args[2] == Weapon2QTE.."QTE" then
        args[1] = true
        return old2(self, unpack(args))
       end
@@ -286,10 +286,7 @@ Combat:AddToggle({
                 lp.PlayerGui.Combat.MagicQTE.Visible = false
                 -- Thief
             elseif BaseClass == "Thief" then
-                local ohBoolean1 = true
-                local ohString2 = "DaggerQTE"
-                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
-                lp.PlayerGui.Combat.DaggerQTE.Visible = false
+                Weapon2QTE = "Dagger"
                 -- Slayer
             elseif BaseClass == "Slayer" then
                 local ohBoolean1 = true

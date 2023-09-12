@@ -1,5 +1,20 @@
 -- save test 14
 
+local Weapon2QTE = "N/A"
+
+task.wait()
+local old2
+old2 = hookmetamethod(game, "__namecall", function(self, ...)
+  if self.Name == "RemoteFunction" and getnamecallmethod() == "FireServer" then
+      local args = {...}
+      if args[2] == Weapon.."QTE" then
+       args[1] = true
+       return old2(self, unpack(args))
+      end
+  end
+  return old2(self, ...)
+end)
+
 repeat
     wait()
 until game:IsLoaded()
@@ -236,18 +251,14 @@ Combat:AddToggle({
         getgenv().AutoDodge = (Value)
 
         while AutoDodge do
- task.wait()
-local old
-old = hookmetamethod(game, "__namecall", function(self, ...)
-  if self.Name == "RemoteFunction" and getnamecallmethod() == "FireServer" then
-      local args = {...}
-      if args[2] == "DodgeMinigame" and typeof(args[1]) == "table" then
-       args[1] = {true, true}
-       return old(self, unpack(args))
-      end
-  end
-  return old(self, ...)
-end)
+            task.wait()
+            local ohTable1 = {
+                [1] = true,
+                [2] = true
+            }
+            local ohString2 = "DodgeMinigame"
+
+            game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohTable1, ohString2)
             task.wait()
         end
     end

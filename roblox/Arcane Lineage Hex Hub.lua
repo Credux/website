@@ -275,29 +275,71 @@ Combat:AddToggle({
         local BaseClass = lp.PlayerGui:WaitForChild("StatMenu").Holder.BaseClassVal
             .Text
 
+
         while AutoQTE do
             task.wait()
 
             -- Wizard
             if BaseClass == "Wizard" then
-                Weapon2QTE = "Magic"
+                local ohBoolean1 = true
+                local ohString2 = "MagicQTE"
+                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
+                lp.PlayerGui.Combat.MagicQTE.Visible = false
+
                 -- Thief
             elseif BaseClass == "Thief" then
-                Weapon2QTE = "Dagger"
+                local ohBoolean1 = true
+                local ohString2 = "DaggerQTE"
+                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
+                lp.PlayerGui.Combat.DaggerQTE.Visible = false
+
                 -- Slayer
             elseif BaseClass == "Slayer" then
-                Weapon2QTE = "Spear"
+                local ohBoolean1 = true
+                local ohString2 = "SpearQTE"
+                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
+                lp.PlayerGui.Combat.SpearQTE.Visible = false
                 -- Fist
             elseif BaseClass == "Martial Artist" then
-                Weapon2QTE = "Fist"
+                local ohBoolean1 = true
+                local ohString2 = "FistQTE"
+                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
+                lp.PlayerGui.Combat.FistQTE.Visible = false
                 -- Sword
             elseif BaseClass == "Warrior" then
-                Weapon2QTE = "Sword"
+                local ohBoolean1 = true
+                local ohString2 = "SwordQTE"
+                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
+                lp.PlayerGui.Combat.SwordQTE.Visible = false
                 task.wait()
             end
-        else
-            Weapon2QTE = "N/A"
         end
+    end
+})
+
+Combat:AddDropdown({
+    Name = "AutoQTE (Advanced)",
+    Default = "None",
+    Options = { "None", "Wizard", "Thief", "Slayer", "Blades Spawn", "Martial Artist", "Warrior" },
+    Callback = function(Value)
+            -- Wizard
+            if Value == "Wizard" then
+                Weapon2QTE = "Magic"
+                -- Thief
+            elseif Value == "Thief" then
+                Weapon2QTE = "Dagger"
+                -- Slayer
+            elseif Value == "Slayer" then
+                Weapon2QTE = "Spear"
+                -- Fist
+            elseif Value == "Martial Artist" then
+                Weapon2QTE = "Fist"
+                -- Sword
+            elseif Value == "Warrior" then
+                Weapon2QTE = "Sword"
+            elseif Value == None" then
+                Weapon2QTE = "N/A"
+            end
     end
 })
 

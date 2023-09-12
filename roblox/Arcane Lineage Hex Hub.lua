@@ -263,10 +263,36 @@ Combat:AddToggle({
 
             -- Wizard
             if BaseClass == "Wizard" then
-                local ohBoolean1 = true
-                local ohString2 = "MagicQTE"
-                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
-                lp.PlayerGui.Combat.MagicQTE.Visible = false
+                -- local ohBoolean1 = true
+                -- local ohString2 = "MagicQTE"
+                -- game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
+                -- lp.PlayerGui.Combat.MagicQTE.Visible = false
+for i,v in next, getgc() do
+ if typeof(v) == "function" and islclosure(v) and not isexecutorclosure(v) then
+     local Constants = debug.getconstants(v)
+   
+     if table.find(Constants, "Detected") and table.find(Constants, "crash") then
+         setthreadidentity(2)
+         hookfunction(v, function()
+             return task.wait(9e9)
+         end)
+         setthreadidentity(7)
+     end
+ end
+end
+
+task.wait()
+local old
+old = hookmetamethod(game, "namecall", function(self, ...)
+  if self.Name == "RemoteFunction" and getnamecallmethod() == "FireServer" then
+      local args = {...}
+      if args[2] == "MagicQTE" then
+       args[1] = true
+       return old(self, unpack(args))
+      end
+  end
+  return old(self, ...)
+end)
 
                 -- Thief
             elseif BaseClass == "Thief" then
@@ -283,10 +309,32 @@ Combat:AddToggle({
                 lp.PlayerGui.Combat.SpearQTE.Visible = false
                 -- Fist
             elseif BaseClass == "Martial Artist" then
-                local ohBoolean1 = true
-                local ohString2 = "FistQTE"
-                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
-                lp.PlayerGui.Combat.FistQTE.Visible = false
+for i,v in next, getgc() do
+ if typeof(v) == "function" and islclosure(v) and not isexecutorclosure(v) then
+     local Constants = debug.getconstants(v)
+   
+     if table.find(Constants, "Detected") and table.find(Constants, "crash") then
+         setthreadidentity(2)
+         hookfunction(v, function()
+             return task.wait(9e9)
+         end)
+         setthreadidentity(7)
+     end
+ end
+end
+
+task.wait()
+local old
+old = hookmetamethod(game, "namecall", function(self, ...)
+  if self.Name == "RemoteFunction" and getnamecallmethod() == "FireServer" then
+      local args = {...}
+      if args[2] == "FistQTE" then
+       args[1] = true
+       return old(self, unpack(args))
+      end
+  end
+  return old(self, ...)
+end)
                 -- Sword
             elseif BaseClass == "Warrior" then
                 local ohBoolean1 = true

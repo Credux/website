@@ -280,33 +280,23 @@ Combat:AddToggle({
 
             -- Wizard
             if BaseClass == "Wizard" then
-                local ohBoolean1 = true
-                local ohString2 = "MagicQTE"
-                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
-                lp.PlayerGui.Combat.MagicQTE.Visible = false
+                Weapon2QTE = "Magic"
                 -- Thief
             elseif BaseClass == "Thief" then
                 Weapon2QTE = "Dagger"
                 -- Slayer
             elseif BaseClass == "Slayer" then
-                local ohBoolean1 = true
-                local ohString2 = "SpearQTE"
-                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
-                lp.PlayerGui.Combat.SpearQTE.Visible = false
+                Weapon2QTE = "Spear"
                 -- Fist
             elseif BaseClass == "Martial Artist" then
-                local ohBoolean1 = true
-                local ohString2 = "FistQTE"
-                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
-                lp.PlayerGui.Combat.FistQTE.Visible = false
+                Weapon2QTE = "Fist"
                 -- Sword
             elseif BaseClass == "Warrior" then
-                local ohBoolean1 = true
-                local ohString2 = "SwordQTE"
-                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
-                lp.PlayerGui.Combat.SwordQTE.Visible = false
+                Weapon2QTE = "Sword"
                 task.wait()
             end
+        else
+            Weapon2QTE = "N/A"
         end
     end
 })

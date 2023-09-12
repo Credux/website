@@ -235,15 +235,19 @@ Combat:AddToggle({
         getgenv().AutoDodge = (Value)
 
         while AutoDodge do
-            task.wait()
-            local ohTable1 = {
-                [1] = true,
-                [2] = true
-            }
-            local ohString2 = "DodgeMinigame"
-
-            game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohTable1, ohString2)
-            task.wait()
+task.wait()
+local old
+old = hookmetamethod(game, "__namecall", function(self, ...)
+  if self.Name == "RemoteFunction" and getnamecallmethod() == "FireServer" then
+      local args = {...}
+      if args[2] == "DodgeMinigame" and typeof(args[1]) == "table" then
+       args[1] = {true, true}
+       return old(self, unpack(args))
+      end
+  end
+  return old(self, ...)
+end)
+task.wait()
         end
     end
 })
@@ -260,20 +264,7 @@ Combat:AddToggle({
 
         while AutoQTE do
             task.wait()
-local Weapon = "NA"
-for i,v in next, getgc() do
- if typeof(v) == "function" and islclosure(v) and not isexecutorclosure(v) then
-     local Constants = debug.getconstants(v)
-   
-     if table.find(Constants, "Detected") and table.find(Constants, "crash") then
-         setthreadidentity(2)
-         hookfunction(v, function()
-             return task.wait(9e9)
-         end)
-         setthreadidentity(7)
-     end
- end
-end
+
             -- Wizard
             if BaseClass == "Wizard" then
                 local ohBoolean1 = true
@@ -282,7 +273,10 @@ end
                 lp.PlayerGui.Combat.MagicQTE.Visible = false
                 -- Thief
             elseif BaseClass == "Thief" then
-                Weapon = "Dagger"
+                local ohBoolean1 = true
+                local ohString2 = "DaggerQTE"
+                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
+                lp.PlayerGui.Combat.DaggerQTE.Visible = false
                 -- Slayer
             elseif BaseClass == "Slayer" then
                 local ohBoolean1 = true
@@ -303,18 +297,6 @@ end
                 lp.PlayerGui.Combat.SwordQTE.Visible = false
                 task.wait()
             end
-task.wait()
-local old2
-old2 = hookmetamethod(game, "__namecall", function(self, ...)
-  if self.Name == "RemoteFunction" and getnamecallmethod() == "FireServer" then
-      local args = {...}
-      if args[2] == Weapon.."QTE" then
-       args[1] = true
-       return old2(self, unpack(args))
-      end
-  end
-  return old2(self, ...)
-end)
         end
     end
 })

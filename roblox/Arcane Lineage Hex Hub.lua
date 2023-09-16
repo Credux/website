@@ -317,32 +317,6 @@ Combat:AddToggle({
     end
 })
 
-Combat:AddDropdown({
-    Name = "AutoQTE (Advanced)",
-    Default = "None",
-    Options = { "None", "Wizard", "Thief", "Slayer", "Martial Artist", "Warrior" },
-    Callback = function(Value)
-            -- Wizard
-            if Value == "Wizard" then
-                Weapon2QTE = "Magic"
-                -- Thief
-            elseif Value == "Thief" then
-                Weapon2QTE = "Dagger"
-                -- Slayer
-            elseif Value == "Slayer" then
-                Weapon2QTE = "Spear"
-                -- Fist
-            elseif Value == "Martial Artist" then
-                Weapon2QTE = "Fist"
-                -- Sword
-            elseif Value == "Warrior" then
-                Weapon2QTE = "Sword"
-            elseif Value == "None" then
-                Weapon2QTE = "N/A"
-            end
-    end
-})
-
 Combat:AddToggle({
     Name = "Auto-Attack",
     Default = false,

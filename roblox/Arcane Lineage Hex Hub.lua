@@ -1,4 +1,4 @@
--- save test 16
+-- save test 17
 
 local Weapon2QTE = "N/A"
 
@@ -337,8 +337,9 @@ Combat:AddDropdown({
                 -- Sword
             elseif Value == "Warrior" then
                 Weapon2QTE = "Sword"
-            elseif Value == None" then
+            elseif Value == "None" then
                 Weapon2QTE = "N/A"
+                task.wait()
             end
     end
 })

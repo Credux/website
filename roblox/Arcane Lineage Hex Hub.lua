@@ -339,7 +339,6 @@ Combat:AddDropdown({
                 Weapon2QTE = "Sword"
             elseif Value == "None" then
                 Weapon2QTE = "N/A"
-                task.wait()
             end
     end
 })

@@ -1,5 +1,58 @@
-local Library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Credux/Main/Script/roblox/Arcane%20Lineage%20Hex%20Hub%20Orion%20liB')))()
-local Window = Library.CreateLib("Hex Hub", "CRX")
+-- save test 17
+task.wait()
+local old2
+old2 = hookmetamethod(game, "__namecall", function(self, ...)
+  if self.Name == "RemoteFunction" and getnamecallmethod() == "FireServer" then
+      local args = {...}
+      if args[2] == Weapon2QTE.."QTE" then
+       args[1] = true
+       return old2(self, unpack(args))
+      end
+  end
+  return old2(self, ...)
+end)
+
+repeat
+    wait()
+until game:IsLoaded()
+wait()
+
+-- Not my adonis bypasses - Everything else made by me (OneFool)
+for k, v in pairs(getgc(true)) do
+    if pcall(function() return rawget(v, "indexInstance") end) and type(rawget(v, "indexInstance")) == "table" and (rawget(v, "indexInstance"))[1] == "kick" then
+        v.tvk = { "kick", function() return game.Workspace:WaitForChild("") end }
+    end
+end
+for i, v in next, getgc() do
+    if typeof(v) == "function" and islclosure(v) and not isexecutorclosure(v) then
+        local Constants = debug.getconstants(v)
+        if table.find(Constants, "Detected") and table.find(Constants, "crash") then
+            setthreadidentity(2)
+            hookfunction(v, function()
+                return task.wait(9e9)
+            end)
+            setthreadidentity(7)
+        end
+    end
+end
+-- End Adonis Bypasses
+
+------------------------Anti_AFK----------------------------------
+if getconnections then
+    for _, v in next, getconnections(game:GetService("Players").LocalPlayer.Idled) do
+        v:Disable()
+    end
+end
+
+if not getconnections then
+    game:GetService("Players").LocalPlayer.Idled:connect(
+        function()
+            game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+        end
+    )
+end
+------------------------End_Anti_AFK------------------------------
+
 
 --VARIABLES
 local a1 = 0
@@ -12,30 +65,22 @@ getgenv().GodMode = true;
 getgenv().AutoMeteorite = true;
 getgenv().AutoBlackMarketESP = true;
 getgenv().AutoSkin = true;
---FUNCTIONS
 
-
--- MAIN FOR TABS
-local Main = Window:NewTab("Main")
-local AnyGame = Window:NewTab("Misc")
-
---TABS FOR ANY GAME
 
 if game.PlaceId == 8619263259 then
-    -- TABS FOR THE CURRENT GAME
-    local AutoSection = Main:NewSection("Auto and Toggles(Risky)")
-    local TeleportSection = Main:NewSection("Teleports")
-    local ClassSection = Main:NewSection("Classes(Use in Private Servers for saftey)")
-    local ZoneSection = Main:NewSection("Zones(Mostly Spawns)")
-    local QuestSection = Main:NewSection("Quests")
-    local EnemiesSection = Main:NewSection("Bosses(Use In Private Servers for saftey)")
-    local NPCSection = Main:NewSection("NPCs")
-    local ShopSection = Main:NewSection("All Shop Items")
-
-    -- Buttons For Updating
-
-
-    -- Code for other stuff cuz I'm lazy
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Credux/Main/Script/roblox/Arcane%20Lineage%20Hex%20Hub%20Orion%20liB')))()
+local Window = OrionLib:MakeWindow({
+    Name = "Hex Hub [Mobile]",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "HexCL"
+})
+local PlayerSec = Window:MakeTab({
+    Name = "Character",
+    Icon = "rbxassetid://14516565815",
+    PremiumOnly = false
+})
+    -- Code for other stuff cuz I'm lazy -Creator (not me)
     
     
     if 1==1 then
@@ -92,14 +137,6 @@ if game.PlaceId == 8619263259 then
                 v.Parent.Parent:Destroy()
             end
         end
-    end)
-
-    
-    --TOGGLES
-
-    
-    AutoSection:NewToggle("Some stuff can get buggy if you die", "This Does Nothing", function(state) 
-
     end)
 
     AutoSection:NewToggle("Auto Orbs", "Auto teleports Orbs to you(Buggy).", function(state) 
@@ -820,37 +857,3 @@ local aa4 = 0
 else
     -- IF THIS ISN'T THE GAME THEN IT WON'T LOAD THESE TOGGLES, BUTTONS, ETC.
 end
-
---BUTTONS FOR ANY GAME
-local positionSection = AnyGame:NewSection("Positions")
-local pos1
-local pos2
-local pos3
-
-
-
-positionSection:NewButton("Save Position", "Saves your position.", function()
-    pos1 = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
-end)
-
-positionSection:NewButton("Load Position", "Loads Saved Position.", function()
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = pos1
-end)
-
-
-positionSection:NewButton("Save Position 2", "Saves your position.", function()
-    pos2 = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
-end)
-
-positionSection:NewButton("Load Position 2", "Loads Saved Position.", function()
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = pos2
-end)
-
-
-positionSection:NewButton("Save Position 3", "Saves your position.", function()
-    pos3 = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
-end)
-
-positionSection:NewButton("Load Position 3", "Loads Saved Position.", function()
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = pos3
-end)

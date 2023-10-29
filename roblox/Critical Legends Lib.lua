@@ -231,7 +231,7 @@ function Kavo.CreateLib(kavName, themeList)
     Main.Parent = ScreenGui
     Main.BackgroundColor3 = themeList.Background
     Main.ClipsDescendants = true
-    Main.Position = UDim2.new(0.336503863, 0, 0.275485456, 0)
+    Main.Position = UDim2.new(0.146503863, 0, 0.155485456, 0)
     Main.Size = UDim2.new(0, 525, 0, 318)
 
     MainCorner.CornerRadius = UDim.new(0, 4)
@@ -272,7 +272,7 @@ function Kavo.CreateLib(kavName, themeList)
     close.Name = "close"
     close.Parent = MainHeader
     close.BackgroundTransparency = 1.000
-    close.Position = UDim2.new(0.349999988, 0, 0.137999997, 0)
+    close.Position = UDim2.new(0.109999988, 0, 0.137999997, 0)
     close.Size = UDim2.new(0, 21, 0, 21)
     close.ZIndex = 2
     close.Image = "rbxassetid://3926305904"

@@ -1,859 +1,518 @@
--- save test 17
-task.wait()
-local old2
-old2 = hookmetamethod(game, "__namecall", function(self, ...)
-  if self.Name == "RemoteFunction" and getnamecallmethod() == "FireServer" then
-      local args = {...}
-      if args[2] == Weapon2QTE.."QTE" then
-       args[1] = true
-       return old2(self, unpack(args))
+local Player = game:GetService("Players").LocalPlayer
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Luna's GUI | I SUPPORT LGBTQIA+ |", "GrapeTheme")
+
+local ATab = Window:NewTab("Autofarm")
+local ASection = ATab:NewSection("Autofarm")
+
+local Enemies = workspace.Enemies:GetDescendants()
+local Mobs = {}
+
+for i,v in pairs(Enemies) do
+if v:IsA("ObjectValue") and v.Parent.Name == "Enemy" and v.Parent:IsA("Model") and v.Name == "Model" then
+    if not table.find(Mobs,tostring(v.Value)) then
+        table.insert(Mobs,tostring(v.Value))
+    end
+end
+end
+
+ASection:NewDropdown("Teleport To Mob", "Teleports you to the mob selected once(repeatable)", Mobs, function(CurrentOption)
+local HRP = Player.Character:FindFirstChild("HumanoidRootPart")
+local Enemies = workspace.Enemies:GetDescendants()
+   for i,v in next, Enemies do 
+      if v.Parent.Name == "Enemy" and v:IsA("BasePart") and v.Name == "EnemyLocation" and tostring(v.Parent.Model.Value) == CurrentOption and v.Parent.InCombat.Value == false and v.Parent:FindFirstChild("EnemyDefeat") ~= true then
+         HRP.CFrame = v.CFrame
       end
-  end
-  return old2(self, ...)
+   end
 end)
 
-repeat
-    wait()
-until game:IsLoaded()
-wait()
+getgenv().stopautotpmobloop = false
 
--- Not my adonis bypasses - Everything else made by me (OneFool)
-for k, v in pairs(getgc(true)) do
-    if pcall(function() return rawget(v, "indexInstance") end) and type(rawget(v, "indexInstance")) == "table" and (rawget(v, "indexInstance"))[1] == "kick" then
-        v.tvk = { "kick", function() return game.Workspace:WaitForChild("") end }
-    end
-end
-for i, v in next, getgc() do
-    if typeof(v) == "function" and islclosure(v) and not isexecutorclosure(v) then
-        local Constants = debug.getconstants(v)
-        if table.find(Constants, "Detected") and table.find(Constants, "crash") then
-            setthreadidentity(2)
-            hookfunction(v, function()
-                return task.wait(9e9)
-            end)
-            setthreadidentity(7)
+ASection:NewDropdown("Autoteleport To Mob", "Automatically teleports you to the mob selected", Mobs, function(CurrentOption)
+spawn(function()
+    while not stopautotpmobloop and wait(0.5) do
+local HRP = Player.Character:FindFirstChild("HumanoidRootPart")
+local Enemies = workspace.Enemies:GetDescendants()
+        if getgenv().stopautotpmobloop == true then
+            break
         end
-    end
-end
--- End Adonis Bypasses
-
-------------------------Anti_AFK----------------------------------
-if getconnections then
-    for _, v in next, getconnections(game:GetService("Players").LocalPlayer.Idled) do
-        v:Disable()
-    end
-end
-
-if not getconnections then
-    game:GetService("Players").LocalPlayer.Idled:connect(
-        function()
-            game:GetService("VirtualUser"):ClickButton2(Vector2.new())
-        end
-    )
-end
-------------------------End_Anti_AFK------------------------------
-
-
---VARIABLES
-local a1 = 0
-local playern = game.Players.LocalPlayer.Name
-local base = game:GetService("Workspace").Arsenals["Initus Bay"].Base
-local basec = base.CFrame
-getgenv().autoOrb = true;
-getgenv().autoMats = true;
-getgenv().GodMode = true;
-getgenv().AutoMeteorite = true;
-getgenv().AutoBlackMarketESP = true;
-getgenv().AutoSkin = true;
-
-
-if game.PlaceId == 8619263259 then
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Credux/Main/Script/roblox/Arcane%20Lineage%20Hex%20Hub%20Orion%20liB')))()
-local Window = OrionLib:MakeWindow({
-    Name = "Hex Hub [Mobile]",
-    HidePremium = false,
-    SaveConfig = true,
-    ConfigFolder = "HexCL"
-})
-local PlayerSec = Window:MakeTab({
-    Name = "Character",
-    Icon = "rbxassetid://14516565815",
-    PremiumOnly = false
-})
-    -- Code for other stuff cuz I'm lazy -Creator (not me)
-    
-    
-    if 1==1 then
-        for i,v in pairs(game:GetService("Workspace").Stalls:GetDescendants()) do
-            if v:IsA("NumberValue") and v.Name == "Cost" then
-                if v.Parent.Parent.Parent.Parent.Name == "Black Market" then
-                
-                else
-                    ShopSection:NewButton(v.Parent.Name.."("..v.Value.."g)", "", function()
-                        local args = {
-                            [1] = "Buy1",
-                            [2] = workspace.Stalls:FindFirstChild(v.Parent.Parent.Parent.Parent.Name):FindFirstChild(v.Parent.Parent.Parent.Name).Shop:FindFirstChild(v.Parent.Name)
-                        }
-
-                        game:GetService("ReplicatedStorage").Remotes.Effected:FireServer(unpack(args))
-                    end)
+    local CombatFolder = workspace:FindFirstChild("CombatFolder")
+        if CombatFolder == nil then
+            for i,v in next, Enemies do 
+                if v.Parent.Name == "Enemy" and v:IsA("BasePart") and v.Name == "EnemyLocation" and tostring(v.Parent.Model.Value) == CurrentOption and v.Parent.InCombat.Value == false and v.Parent:FindFirstChild("EnemyDefeat") ~= true then
+                    HRP.CFrame = v.CFrame
+                    break
                 end
             end
         end
     end
-    
-    workspace.Stalls["Black Market"].ChildAdded:Connect(function(child)
-        if string.match(child.Name, 'Grani') then
-            local BMitems = Main:NewSection("Black Market Items")      
-            for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-                if v:IsA("TextButton") and v.Text == "Main" and v.Name == "MainTabButton" then
-                    game:GetService("StarterGui"):SetCore("SendNotification",{
-                        Title = "Black Market Dealer", -- Required
-                        Text = "Check the Black Market Items Section in the GUI(Scroll down to bottom).", -- Required
-                    })
-                    
-                    wait(0.5)
-                    
-                    for i,v in pairs(game:GetService("Workspace").Stalls["Black Market"]:GetDescendants()) do
-                        if v:IsA("NumberValue") and v.Name == "Cost" then
-                            BMitems:NewButton(v.Parent.Name.."("..v.Value.."g)", "", function()
-                                local args = {
-                                    [1] = "Buy1",
-                                    [2] = workspace.Stalls:FindFirstChild(v.Parent.Parent.Parent.Parent.Name):FindFirstChild(v.Parent.Parent.Parent.Name).Shop:FindFirstChild(v.Parent.Name)
-                                }
-            
-                                game:GetService("ReplicatedStorage").Remotes.Effected:FireServer(unpack(args))
-                            end)
-                        end
-                    end
-                end
-            end
-        end
-    end)
+end)
+end)
 
-    workspace.Stalls["Black Market"].ChildRemoved:Connect(function(child)
-        for i,v in pairs(game.CoreGui:GetDescendants()) do
-            if v:IsA("TextLabel") and v.Text == "Black Market Items" then
-                v.Parent.Parent:Destroy()
-            end
-        end
-    end)
+ASection:NewButton("Stop AutoMobTP", "Stops automatically teleporting to the mob selected", function()
+getgenv().stopautotpmobloop = true
+wait(0.4)
+getgenv().stopautotpmobloop = false
+end)
 
-    AutoSection:NewToggle("Auto Orbs", "Auto teleports Orbs to you(Buggy).", function(state) 
-       getgenv().autoOrb = state
-       if state then
-       TouchOrb();
-       workspace.ChildAdded:Connect(function(child)
-            if string.match(child.Name, 'CombatFolder') then
-                TouchOrb();
-            end
-        end)
+ASection:NewButton("GodMode", "Activates GodMode", function()
+    local Remote = game:GetService("ReplicatedStorage"):FindFirstChild("DamageNew", true)
+    local Player = game:GetService("Players").LocalPlayer
+    local OldNameCall = nil
+OldNameCall = hookmetamethod(game, "__namecall", function(self, ...)
+   local Args = {...}
+   local Self = Args[1]
+       if self == Remote and Args[1] == Player.Character then
+           return
        end
-    end)
-local aa3 = 0
-local aa4 = 0
-    AutoSection:NewToggle("Auto BM ESP", "Puts an ESP on BM when spawned", function(state) 
-        getgenv().AutoBlackMarketESP = state
-        if state then
-        BMesp();
-        end
-     end)
+   return OldNameCall(self, unpack(Args))
+end)
+end)
 
-    AutoSection:NewToggle("God Mode(Read Description, 3 dots ----->)", "Activate when in battles, disable after(Very Buggy).", function(state)
-        getgenv().GodMode = state
-        if state then
-        GodMode();
-        workspace.ChildAdded:Connect(function(child)
-             if string.match(child.Name, 'CombatFolder') then
-                 GodMode();
-             end
-         end)
-        end
-     end)
+local Tp = true
 
-    AutoSection:NewToggle("Auto Materials", "Teleports all Materials to you.", function(state)
-        getgenv().autoMats = state
-        if state then
-        TouchMats();
-        end
-    end)
-
-    AutoSection:NewToggle("Auto Skin", "Gotta be near monkey dude.", function(state)
-        getgenv().AutoSkin = state
-        if state then
-            fireproximityprompt(game:GetService("Workspace").Stalls.SkinShop.Monkey.HumanoidRootPart.Attachment.ProximityPrompt, 1, true)
-            Skins();
-        end
-    end)
-
-    function fireproximityprompt(Obj, Amount, Skip) -- Sowd0404 proximpy script
-        if Obj.ClassName == "ProximityPrompt" then 
-            Amount = Amount or 1
-            local PromptTime = Obj.HoldDuration
-            if Skip then 
-                Obj.HoldDuration = 0
-            end
-            for i = 1, Amount do 
-                Obj:InputHoldBegin()
-                if not Skip then 
-                    wait(Obj.HoldDuration)
+ASection:NewToggle("Auto OrbTP", "Teleports you to orbs automatically (portal relic)", function(State)
+    Tp = State
+task.spawn(function()
+    while Tp and wait(0.1) do
+	local MyFol
+        local CombatFolder = workspace:FindFirstChild("CombatFolder")
+        if CombatFolder ~= nil and CombatFolder:FindFirstChild(Player.Name) then
+	    local Player = game:GetService("Players").LocalPlayer	
+            local Character = Player.Character or Player.CharacterAdded:Wait()
+            local HRP = Character:FindFirstChild("HumanoidRootPart")
+            MyFol = CombatFolder:FindFirstChild(Player.Name):GetDescendants()
+	    if MyFol then
+            for i,v in pairs(MyFol) do
+                if v:IsA("BasePart") and v.Name == "HitBox" or v.Name == "Base" then
+                    HRP.CFrame = v.CFrame
                 end
-                Obj:InputHoldEnd()
             end
-            Obj.HoldDuration = PromptTime
-        else 
-
+	end
         end
-
-        wait(1)
-
-        game:GetService("Players").LocalPlayer.PlayerGui.UI.Accept.RemoteEvent:FireServer()
-        
-        wait()
     end
-
-    function TouchMats()
-        local Player = game.Players.LocalPlayer
-        spawn(function()
-            while getgenv().autoMats == true do
-                for i,v in pairs(game:GetService("Workspace").MaterialGivers:GetDescendants()) do
-                    if v.Name == "Giver" then
-                        local HRP = game.Players.LocalPlayer.Character.HumanoidRootPart
-                        v.CFrame = HRP.CFrame
-                    end
-                end
-                wait()
-            end
-        end)
-    end
-
-    function TouchOrb()
-        local Player = game.Players.LocalPlayer
-        spawn(function()
-            while getgenv().autoOrb == true do
-                if game.Workspace.CombatFolder:FindFirstChild(Player.Name) then
-                    for i,v in pairs(game.Workspace.CombatFolder[Player.Name]:GetDescendants()) do
-                        if v:IsA("Model") then
-                            local HRP = game.Players.LocalPlayer.Character.HumanoidRootPart
-                            v.HitBox.CFrame = HRP.CFrame
-                        else
-    
-                        end
-                    end
-                    else return
-                end
-            wait()    
-            end
-        end)
-    end
-
-    function GodMode()
-        local Player = game.Players.LocalPlayer
-        spawn(function()
-            while getgenv().GodMode == true do
-                if game.Workspace.CombatFolder then
-                    for i,v in pairs(game.Workspace.CombatFolder:GetChildren()) do
-                        if v:IsA("Folder") then
-                            
-                        else
-                            v:Destroy()
-                        end
-                    end
-                    else return
-                end
-            wait()    
-            end
-        end)
-    end
-
-    function BMesp()
-        local Player = game.Players.LocalPlayer
-        spawn(function()
-            while getgenv().AutoBlackMarketESP == true do
-                if game:GetService("Workspace").Stalls["Black Market"].Grani then
-                        for i,v in pairs(game:GetService("Workspace").Stalls["Black Market"]:GetDescendants()) do
-                            if v.ClassName == "Part" and v.Name == "booth"  then -- change
-                                    
-                                    local esp = Instance.new("BillboardGui")
-                                    local esp1 = Instance.new("TextLabel")
-                                
-                                    esp.Parent = v
-                                    esp.Name = "BM"
-                                    esp.AlwaysOnTop = true
-                                    esp.LightInfluence = 1
-                                    esp.Size = UDim2.new(0, 50, 0, 50)
-                                    esp.StudsOffset = Vector3.new(0, 2, 0)
-                            
-                                    esp1.Parent = esp
-                                    esp1.BackgroundColor3 = Color3.new(1, 1, 1)
-                                    esp1.BackgroundTransparency = 1
-                                    esp1.Size = UDim2.new(1, 0, 1, 0)
-                                    esp1.Text = "Black Market Dealer"
-                                    esp1.TextColor3 = Color3.new(0, 1, 0)
-                                    esp1.TextScaled = true
-
-                                    wait(60)
-
-                                    esp:Destroy()
-
-
-                           end
-                        end
-                    else return
-                end
-            wait(0.5)    
-            end
-        end)
-    end
-
-    function Skins()
-        local Player = game.Players.LocalPlayer
-        spawn(function()
-            while getgenv().AutoSkin == true do
-                workspace.ChildRemoved:Connect(function(child)
-                    if child.Name == "ToTween" and getgenv().AutoSkin == true then
-                        wait(1)
-                        fireproximityprompt(game:GetService("Workspace").Stalls.SkinShop.Monkey.HumanoidRootPart.Attachment.ProximityPrompt, 1, true)
-                    end
-                end)
-                wait()
-            end
-        end)
-    end
-    
-    
-
-    --BUTTONS
-    TeleportSection:NewButton("Meteorite TP", "Teleports you to Meteorite.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-
-        HRP.CFrame = game:GetService("Workspace").WorldMap["Sonus Cave"].Meteorite.prox.CFrame
-    end)
-
-    TeleportSection:NewButton("Black Market TP", "Teleports you to BM.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-
-        HRP.CFrame = game:GetService("Workspace").Stalls["Black Market"].Grani.Shop.booth.CFrame
-    end)
-
-    TeleportSection:NewButton("Arsenal TP", "Teleports you to trading arsenal.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-
-        HRP.CFrame = game:GetService("Workspace").Arsenals["Trading Sky"].Base.CFrame
-    end)
-    
-    TeleportSection:NewButton("Teleport Chests", "Teleports chests TouchInterests to you.", function()
-        for i,v in pairs(game:GetService("Workspace").Chests:GetChildren()) do
-            if v:IsA("Model") then
-               v.Giver.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame 
-            end
-        end
-    end)
-
-    ClassSection:NewButton("Archer Class", "Archer, yay!", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-
-        HRP.CFrame = game:GetService("Workspace").Statues.StatueOfArcher.Orb.CFrame
-
-    end)
-
-    ClassSection:NewButton("Boxer Class", "Fold some kids. Night Night.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Statues.StatueOfBoxer.Orb.CFrame
-
-    end)
-
-    ClassSection:NewButton("Elementalist Class", "Don't do drugs kids.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Statues.StatueOfElementalist.Orb.CFrame
-
-    end)
-
-    ClassSection:NewButton("Defender Class", "Statue name said Knight tho...", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Statues.StatueOfKnight.Orb.CFrame
-
-    end)
-
-    ClassSection:NewButton("Reaper Class", "You're near death's door...", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Statues.StatueOfReaper.Orb.CFrame
-
-    end)
-
-    ClassSection:NewButton("Samurai Class", "Katana Zero?", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Statues.StatueOfSamurai.Union.CFrame
-
-    end)
-
-    ClassSection:NewButton("Wizard Class", "Nerd user, wear glasses.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Statues.StatueOfWizard.Orb.CFrame
-
-    end)
-
-    ClassSection:NewButton("Combo Sword Class", "Back to the start, huh..?", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Statues.StatueOfWarrior.Orb.CFrame
-
-    end)
-
-    ClassSection:NewButton("Valkyrie Class", "Not fixing teleport, nerd.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Statues.StatueOfValkyrie.Union.CFrame
-
-    end)
-
-    ClassSection:NewButton("Healer Class", "This is easy to find...", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Statues.StatueOfHealer.Orb.CFrame
-
-    end)
-
-    ClassSection:NewButton("Gunner Class", "It's highhh noooon.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Statues.StatueOfGunner.Orb.CFrame
-
-    end)
-
-    ClassSection:NewButton("SpellBook Class", "Worst Hybrid Class.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Statues.StatueOfSpellBook.Wedge.CFrame + Vector3.new(0,12,0)
-
-    end)
-
-    ClassSection:NewButton("Skypian Class", "Not a One Piece reference.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Statues.StatueOfSkypian.Wedge.CFrame + Vector3.new(0,12,0)
-
-    end)
-
-    ZoneSection:NewButton("Crystal Caves", "Spooky.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = CFrame.new(5305.93262, 362.807343, 1764.76599, 0.875960052, -5.81703796e-09, -0.482383668, -4.24379154e-09, 1, -1.97652419e-08, 0.482383668, 1.93606979e-08, 0.875960052)
-
-    end)
-
-    ZoneSection:NewButton("Samurai Island", "Where's Zoro?", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Spawns.Thirteen.CFrame
-    end)
-
-
-    ZoneSection:NewButton("The Void", "Hope Gaster isn't here.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Spawns.Eight.CFrame
-    end)
-
-
-    ZoneSection:NewButton("Sky Island", "Will kill if not required level", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = CFrame.new(-1045.73132, 2698.11499, 19561.4844, -1, -1.95300798e-09, 4.51066379e-16, -1.95300798e-09, 1, -5.91611098e-08, -3.35524256e-16, -5.91611098e-08, -1)
-
-    end)
-
-
-    ZoneSection:NewButton("Abyss of Enis", "Where Challenger is...", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Spawns.Eleven.CFrame
-    end)
-
-
-    ZoneSection:NewButton("Blubb's Kingdom", "Rocks n stuff, idk.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Spawns.Nine.CFrame
-    end)
-
-
-    ZoneSection:NewButton("Evergreen", "There's a virus nearby.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Spawns.Seven.CFrame
-    end)
-
-
-    ZoneSection:NewButton("Heat Lovers Seaside", "What kind of name is that?", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Spawns.Five.CFrame
-    end)
-
-
-    ZoneSection:NewButton("Element Door", "For Element Ticket", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = CFrame.new(178.406723, 131.09996, -86.001091, 0.999368429, 4.07311553e-08, 0.0355354212, -4.13028935e-08, 1, 1.53551039e-08, -0.0355354212, -1.68131216e-08, 0.999368429)
-
-    end)
-
-    ZoneSection:NewButton("Hell Cave", "Hell Bats", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = CFrame.new(-2533.48901, -157.000046, 3172.72632, 0.082250461, -3.42684707e-08, -0.996611714, -3.68725388e-08, 1, -3.74280731e-08, 0.996611714, 3.98260767e-08, 0.082250461)
-
-    end)
-
-    ZoneSection:NewButton("Punky Sky", "Yea, seems a lot like....", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Spawns.Three.CFrame
-    end)
-
-    ZoneSection:NewButton("Beginner Spawn", "Forgorr", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Spawns.Two.CFrame
-    end)   
-
-    NPCSection:NewButton("Craight the Monkey NPC", "", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = CFrame.new(2128.40967, 406.999969, 3148.48975, -0.169384688, 0, 0.985549986, 0, 1, 0, -0.985549986, 0, -0.169384688)
-    end)
-
-    NPCSection:NewButton("Blacksmith NPC", "", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = CFrame.new(5626.3584, 89.6270065, -8174.3623, -0.657170177, 1.52678989e-08, -0.753742218, 3.55675267e-09, 1, 1.71550774e-08, 0.753742218, 8.59293081e-09, -0.657170177)
-    end)
-
-    NPCSection:NewButton("Challenging the Challenger NPC", "", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").QuestNPCs["Challenging the Challenger"].Head.CFrame
-    end)
-
-    NPCSection:NewButton("Foxes Saga NPC", "", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").QuestNPCs["Foxes Saga"].Head.CFrame
-    end)
-
-    NPCSection:NewButton("Foxes and Slimes NPC", "5M Gold Coins???", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").QuestNPCs["Foxes and Slimes"].Head.CFrame
-    end)
-
-    NPCSection:NewButton("Get down here! NPC", "No, I don't think I will.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").QuestNPCs["Get down here!"].Head.CFrame
-    end)
-
-    NPCSection:NewButton("Hell so Hot NPC", "Heaven so Cold", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").QuestNPCs["Hell so Hot"].Head.CFrame
-    end)
-
-    NPCSection:NewButton("Honey Collector NPC", "Be careful of killer bees", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").QuestNPCs["Honey Collector"].Head.CFrame
-    end)
-
-    NPCSection:NewButton("Monster Hunter NPC", "Monster Hunter Rise", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").QuestNPCs["Monster Hunter"].Head.CFrame
-    end)
-
-    NPCSection:NewButton("Rageblade NPC", "L + Ratio + Stay Mad + Fatherless", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").QuestNPCs.Rageblade.Main.CFrame
-    end)
-
-    NPCSection:NewButton("Samurai Island NPC", "don't know", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").QuestNPCs["Samurai Island Quest"].Head.CFrame
-    end)
-
-    NPCSection:NewButton("Slimy Situation NPC", "U-ummm...", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").QuestNPCs["Slimy Situation"].Head.CFrame
-    end)
-
-    NPCSection:NewButton("Tusk's Revenge NPC", "Vengeful spirit", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").QuestNPCs["Tusk's Revenge"].Head.CFrame
-    end)
-
-    NPCSection:NewButton("Voidvorn Drills NPC", "Gurren Lagann", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").QuestNPCs["Voidborn Drills"].Main.CFrame
-    end)
-
-    -- Section Start
-
-    QuestSection:NewButton("Challenging the Challenger Quest", "", function()
-        local args = {
-            [1] = "MainAction",
-            [2] = workspace.QuestNPCs:FindFirstChild("Challenging the Challenger")
-        }
-
-        workspace.QuestNPCs.Main.onClick:FireServer(unpack(args))
-    end)
-
-    QuestSection:NewButton("Foxes Saga Quest", "", function()
-        local args = {
-            [1] = "MainAction",
-            [2] = workspace.QuestNPCs:FindFirstChild("Foxes Saga")
-        }
-
-        workspace.QuestNPCs.Main.onClick:FireServer(unpack(args))
-    end)
-
-    QuestSection:NewButton("Foxes and Slimes Quest", "5M Gold Coins???", function()
-        local args = {
-            [1] = "MainAction",
-            [2] = workspace.QuestNPCs:FindFirstChild("Foxes and Slimes")
-        }
-
-        workspace.QuestNPCs.Main.onClick:FireServer(unpack(args))
-    end)
-
-    QuestSection:NewButton("Get down here! Quest", "No, I don't think I will.", function()
-        local args = {
-            [1] = "MainAction",
-            [2] = workspace.QuestNPCs:FindFirstChild("Get down here!")
-        }
-
-        workspace.QuestNPCs.Main.onClick:FireServer(unpack(args))
-    end)
-
-    QuestSection:NewButton("Hell so Hot Quest", "Heaven so Cold", function()
-        local args = {
-            [1] = "MainAction",
-            [2] = workspace.QuestNPCs:FindFirstChild("Hell so Hot")
-        }
-
-        workspace.QuestNPCs.Main.onClick:FireServer(unpack(args))
-    end)
-
-    QuestSection:NewButton("Honey Collector Quest", "Be careful of killer bees", function()
-        local args = {
-            [1] = "MainAction",
-            [2] = workspace.QuestNPCs:FindFirstChild("Honey Collector")
-        }
-
-        workspace.QuestNPCs.Main.onClick:FireServer(unpack(args))
-    end)
-
-    QuestSection:NewButton("Monster Hunter Quest", "Monster Hunter Rise", function()
-        local args = {
-            [1] = "MainAction",
-            [2] = workspace.QuestNPCs:FindFirstChild("Monster Hunter")
-        }
-
-        workspace.QuestNPCs.Main.onClick:FireServer(unpack(args))
-    end)
-
-    QuestSection:NewButton("Rageblade Quest", "L + Ratio + Stay Mad + Fatherless", function()
-        local args = {
-            [1] = "MainAction",
-            [2] = workspace.QuestNPCs:FindFirstChild("Rageblade")
-        }
-
-        workspace.QuestNPCs.Main.onClick:FireServer(unpack(args))
-    end)
-
-    QuestSection:NewButton("Samurai Island Quest", "don't know", function()
-        local args = {
-            [1] = "MainAction",
-            [2] = workspace.QuestNPCs:FindFirstChild("Samurai Island Quest")
-        }
-
-        workspace.QuestNPCs.Main.onClick:FireServer(unpack(args))
-    end)
-
-    QuestSection:NewButton("Slimy Situation Quest", "U-ummm...", function()
-        local args = {
-            [1] = "MainAction",
-            [2] = workspace.QuestNPCs:FindFirstChild("Slimy Situation")
-        }
-
-        workspace.QuestNPCs.Main.onClick:FireServer(unpack(args))
-    end)
-
-    QuestSection:NewButton("Tusk's Revenge Quest", "Vengeful spirit", function()
-        local args = {
-            [1] = "MainAction",
-            [2] = workspace.QuestNPCs:FindFirstChild("Tusk's Revenge")
-        }
-
-        workspace.QuestNPCs.Main.onClick:FireServer(unpack(args))
-    end)
-
-    QuestSection:NewButton("Voidborn Drills Quest", "Gurren Lagann", function()
-        local args = {
-            [1] = "MainAction",
-            [2] = workspace.QuestNPCs:FindFirstChild("Voidborn Drills")
-        }
-
-        workspace.QuestNPCs.Main.onClick:FireServer(unpack(args))
-    end)
-
-    -- Section End
-
-    EnemiesSection:NewButton("Oni", "God He's Scary.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Samurai Island Oni"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Shogun", "Cory?", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Samurai Island Boss"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Sky Dragon", "Rawr~~ :3", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Sky 4 Boss Room"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Talented Student", "Not so talented when ya' dead.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Talented Student Boss"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Winged Mother Pig", "This is a mini boss, lol.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Sky 3 Miniboss"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Purple Dude", "Venom, Venom, Venom, Venommmm", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = CFrame.new(5278.44336, 356.807343, 2133.15967, -0.999843419, -4.46200588e-08, 0.0176954623, -4.43306014e-08, 1, 1.67498282e-08, -0.0176954623, 1.59627547e-08, -0.999843419)
-    end)
-
-    EnemiesSection:NewButton("Red Dude", "Cherry Drop", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = CFrame.new(5333.23389, 359.807343, 1547.22266, 0.999957979, 4.28678959e-08, 0.00917041954, -4.31411209e-08, 1, 2.95964284e-08, -0.00917041954, -2.99908081e-08, 0.999957979)
-    end)
-
-    EnemiesSection:NewButton("Orange Dude", "Orange Juice Boss", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = CFrame.new(5037.33154, 346.807343, 1777.70483, -0.0577176027, -7.74749864e-08, 0.998332977, 3.45293607e-08, 1, 7.96006319e-08, -0.998332977, 3.90661583e-08, -0.0577176027)
-    end)
-
-    EnemiesSection:NewButton("Tree Dude", "Grute?", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = CFrame.new(5608.50488, 358.807343, 1755.62134, 0.00102415122, 8.25704483e-09, -0.999999464, 1.49770649e-08, 1, 8.27238811e-09, 0.999999464, -1.49855293e-08, 0.00102415122)
-    end)
-
-    EnemiesSection:NewButton("Queen Bee", "Ya' like jazz?", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Flora Field Boss"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Hell Bat", "Terraria flashbacks...", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Hell Boss"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Snowman", "Frosty the snowman~", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Snowy Caps Boss"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("King Slime", "N-not th-there~~~ ;3", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Ensis Pond Boss"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Duke Fishron", "If you know, you know.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Heat Lovers Seaside Boss"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Luna", "Ok, go to sleep?", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Luna Boss"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Virus", "Happy, Happy, smiley, smiley", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Virus Boss"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Void Eye", "Need some eye drops.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Void Boss"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Skeleton King", "Spooky scary skeletons.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Skeleton King"].Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Challenger", "No, not the car.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies.Challenger.Enemy.EnemyLocation.CFrame
-    end)
-
-    EnemiesSection:NewButton("Heart", "Everytime we touch I get this feeling~", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = game:GetService("Workspace").Enemies["Heart Crystal"].Enemy.EnemyLocation.CFrame
-    end)
-
-    NPCSection:NewButton("Martial Artist NPC", "Dude Who Gives Martialist.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = CFrame.new(-1296.29114, 226.999954, -782.216248, -0.999449909, -4.58875826e-09, -0.0331651606, -7.28118632e-09, 1, 8.10616498e-08, 0.0331651606, 8.12585412e-08, -0.9994499091)
-
-    end)
-
-    NPCSection:NewButton("Martial Artist NPC 2", "Dude Who upgrades Martialist.", function()
-        local HRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        
-        HRP.CFrame = CFrame.new(-2227.19897, 742.916565, -136.004929, -0.973652363, 8.97628372e-09, -0.228037506, -9.15434217e-09, 1, 7.844951e-08, 0.228037506, 7.84700802e-08, -0.973652363)
-
-    end)
-
-else
-    -- IF THIS ISN'T THE GAME THEN IT WON'T LOAD THESE TOGGLES, BUTTONS, ETC.
+end)
+end)
+
+local Acts = true
+
+ASection:NewToggle("Spam All Actives", "Spams all Actives", function(State)
+Acts = State
+
+while Acts and wait() do
+local args = {
+[1] = "UseItem",
+[2] = 1,
+[3] = { ["MouseHit"] = Vector3.new(-46,50,43)}
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Server"):FireServer(unpack(args))
+
+local args = {
+[1] = "UseItem",
+[2] = 2,
+[3] = { ["MouseHit"] = Vector3.new(-46,50,43)}
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Server"):FireServer(unpack(args))
+
+local args = {
+[1] = "UseItem",
+[2] = 3,
+[3] = { ["MouseHit"] = Vector3.new(-46,50,43)}
+} 
+game:GetService("ReplicatedStorage"):WaitForChild("Server"):FireServer(unpack(args))
 end
+end)
+
+ASection:NewButton("AntiAFK", "You will not get disconnected for idling", function()
+for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
+   v:Disable()
+end
+end)
+
+local BTab = Window:NewTab("Fruits/Trees/Pickups")
+local BSection = BTab:NewSection("Fruits/Trees/Pickups")
+
+local Mats = true
+local MaterialGivers = game:GetService("Workspace"):FindFirstChild("MaterialGivers"):GetDescendants()
+
+BSection:NewToggle("Gather Fruits", "Automatically gathers all fruits/trees", function(State)
+    Mats = State
+spawn(function()
+while Mats and wait(0.1) do
+	local Player = game:GetService("Players").LocalPlayer
+           local Character = Player.Character or Player.CharacterAdded:Wait()
+           local HRP = Character:FindFirstChild("HumanoidRootPart")
+     if HRP then
+        for i,v in pairs(MaterialGivers) do
+            if v:IsA("BasePart") and v.Parent.Parent.Parent.Name == "MaterialGivers" then
+               firetouchinterest(HRP,v,0)
+               firetouchinterest(HRP,v,1)
+            end
+        end
+    end
+end
+end)
+end)
+
+BSection:NewButton("Teleport To A Blue Star", "Teleports you to a blue star if it exists", function()
+local HRP = Player.Character:FindFirstChild("HumanoidRootPart")
+local WorkspaceD = workspace:GetDescendants()
+   for i,v in next, WorkspaceD do 
+      if v.Parent.Name == "Models" and v.Name == "BlueStar" and v.Parent.Parent.Parent == workspace then
+         HRP.CFrame = v.CFrame
+      end
+   end
+end)
+
+BSection:NewButton("Teleport To A Star", "Teleports you to a star if it exists", function()
+local HRP = Player.Character:FindFirstChild("HumanoidRootPart")
+local WorkspaceD = workspace:GetDescendants()
+   for i,v in next, WorkspaceD do 
+      if v.Parent.Name == "Models" and v.Name == "Star" and v.Parent.Parent.Parent == workspace then
+         HRP.CFrame = v.CFrame
+      end
+   end
+end)
+
+BSection:NewButton("Teleport To Meteorite", "Teleports you to the meteorite", function()
+local HRP = Player.Character:FindFirstChild("HumanoidRootPart")
+if HRP then
+    HRP.CFrame = CFrame.new(-427, 232.5, -414)
+end
+end)
+
+BSection:NewButton("Teleport To A Graveshard Grave", "Teleports you to a Grave if it exists (Mining Pickaxe)", function()
+local HRP = Player.Character:FindFirstChild("HumanoidRootPart")
+local WorkspaceD = workspace:GetDescendants()
+   for i,v in next, WorkspaceD do 
+      if v.Name == "Hitbox" and v.Parent == workspace then
+         HRP.CFrame = v.CFrame
+      end
+   end
+end)
+
+
+BSection:NewButton("Teleport To A Dragonball", "Teleports you to a dragonball if it exists", function()
+local HRP = Player.Character:FindFirstChild("HumanoidRootPart")
+local WorkspaceD = workspace:GetDescendants()
+   for i,v in next, WorkspaceD do 
+      if v.Name == "Middle" and v.Parent.Parent == workspace and v.Parent.Name == "DragonBall" then
+         HRP.CFrame = v.CFrame
+      end
+   end
+end)
+
+BSection:NewButton("Teleport To A Lily", "Teleports you to a lily if it exists", function()
+local HRP = Player.Character:FindFirstChild("HumanoidRootPart")
+local WorkspaceD = workspace:GetDescendants()
+   for i,v in next, WorkspaceD do 
+      if v.Name == "Middle" and v.Parent.Parent == workspace and v.Parent.Name == "Lily" then
+         HRP.CFrame = v.CFrame
+      end
+   end
+end)
+
+BSection:NewButton("Teleport To A Deathbush/SweetLoveBush", "Teleports you to a Deathbush if it exists", function()
+local HRP = Player.Character:FindFirstChild("HumanoidRootPart")
+local WorkspaceD = workspace:GetDescendants()
+   for i,v in next, WorkspaceD do 
+      if v.Name == "Middle" and v.Parent.Parent == workspace and v.Parent.Name == "DeathBush" then
+         HRP.CFrame = v.CFrame
+      end
+   end
+end)
+
+local CTab = Window:NewTab("Teleport")
+local CSection = CTab:NewSection("Teleport")
+
+local ArsenalTab = {}
+local Arsenals = workspace:WaitForChild("Arsenals"):GetDescendants()
+
+for i,v in pairs(Arsenals) do
+    if v:IsA("BasePart") and v.Parent.Parent.Name == "Arsenals" then
+        if not table.find(ArsenalTab,v.Parent.Name) then
+            table.insert(ArsenalTab,v.Parent.Name)
+        end
+    end
+end
+
+table.insert(ArsenalTab,"Void")
+table.insert(ArsenalTab,"Land Under The Waterfall")
+table.sort(ArsenalTab)
+
+CSection:NewDropdown("Teleport To Arsenal", "Teleports you to the selected arsenal", ArsenalTab, function(CurrentOption)
+    local HRP = Player.Character:FindFirstChild("HumanoidRootPart")
+    if CurrentOption == "Land Under The Waterfall" then
+        HRP.CFrame = CFrame.new(-19912,-110,-6258)
+    elseif CurrentOption == "Void" then
+        HRP.CFrame = CFrame.new(-19396,-73,-4085)
+    else
+        HRP.CFrame = workspace.Arsenals:FindFirstChild(CurrentOption):FindFirstChild("Base").CFrame
+    end
+end)
+
+local NPCs = {}
+table.insert(NPCs,"Smile (Hyper)")
+table.insert(NPCs,"Bottle of ??? (Hunter)")
+table.insert(NPCs,"Blind Grillby (Burning Head)")
+table.insert(NPCs,"Cursed Altar (Cursed)")
+table.insert(NPCs,"Gabriel (Ocean Glider)")
+table.insert(NPCs,"Green Light Green Light (Portal)")
+table.insert(NPCs,"Gears (Time Grinders)")
+table.insert(NPCs,"Mixed Letter (Ghoul)")
+table.insert(NPCs,"Holy Cross (Holy)")
+table.insert(NPCs,"Bottle (Gravity Boots)")
+table.insert(NPCs,"Ancient Paw (Pull)")
+table.insert(NPCs,"Noob (Torch)")
+table.insert(NPCs,"Broski (Bounty Hunter)")
+table.insert(NPCs,"Jeff (Berserk)")
+table.insert(NPCs,"Gem (Crystalized)")
+table.insert(NPCs,"Avatar of Radismus (Blood Wipe)")
+
+
+CSection:NewDropdown("Teleport To Chosen Relic NPC", "Teleports you to the chosen Relic NPC", NPCs, function(CurrentOption)
+local HRP = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+    if CurrentOption == "Bottle of ??? (Hunter)" then HRP.CFrame = CFrame.new(-1040.1, 195.214, -4722.89)
+    elseif CurrentOption == "Blind Grillby (Burning Head)" then HRP.CFrame = CFrame.new(156.598, 162.562, -2334.68)
+    elseif CurrentOption == "Cursed Altar (Cursed)" then HRP.CFrame = CFrame.new(-201.773, -98.5357, 2893.72)
+    elseif CurrentOption == "Gabriel (Ocean Glider)" then HRP.CFrame = CFrame.new(1721.16, 4.14446, -5437.34)
+    elseif CurrentOption == "Green Light Green Light (Portal)" then HRP.CFrame = CFrame.new(-529.14,-92.2,2063.35)
+    elseif CurrentOption == "Gears (Time Grinders)" then HRP.CFrame = CFrame.new(-1848,203.5,-3941.5)
+    elseif CurrentOption == "Mixed Letter (Ghoul)" then HRP.CFrame = CFrame.new(-1092.88, -101, 2155.55)
+    elseif CurrentOption == "Holy Cross (Holy)" then HRP.CFrame = CFrame.new(-1275, 493, 67)
+    elseif CurrentOption == "Bottle (Gravity Boots)" then HRP.CFrame = CFrame.new(5319.36, 13.2782, -8510.45)
+    elseif CurrentOption == "Ancient Paw (Pull)" then HRP.CFrame = CFrame.new(-904, 70, -2592.5)
+    elseif CurrentOption == "Noob (Torch)" then HRP.CFrame = CFrame.new(-124.406, 43.0267, -415.472)
+    elseif CurrentOption == "Broski (Bounty Hunter)" then HRP.CFrame = CFrame.new(569.595, 194.855, -2082.55)
+    elseif CurrentOption == "Jeff (Berserk)" then HRP.CFrame = CFrame.new(311.894, 66.9847, -1380.45)
+    elseif CurrentOption == "Gem (Crystalized)" then HRP.CFrame = CFrame.new(681.1, 34.6, -1334.6)
+    elseif CurrentOption == "Avatar of Radismus (Blood Wipe)" then HRP.CFrame = CFrame.new(5230.36, 384.857, 1645.1)
+    elseif CurrentOption == "Smile (Hyper)" then HRP.CFrame = CFrame.new(-1201, -123, 2573)
+    end
+end)
+
+local NPCTable = {}
+local NPCFol = workspace.QuestNPCs:GetDescendants()
+table.insert(NPCTable,"Grani")
+table.insert(NPCTable,"King Blubb")
+
+for i,v in pairs(NPCFol) do
+if v.Name == "HumanoidRootPart" and v.Parent:IsA("Model") then
+if not table.find(NPCTable,v.Parent.Name) then
+table.insert(NPCTable,v.Parent.Name)
+end
+end
+end
+
+CSection:NewDropdown("Teleport To QuestNPC (Grani/Blubb too)", "Teleports you to the chosen Quest NPC", NPCTable, function(CurrentOption)
+local Player = game:GetService("Players").LocalPlayer 
+local Character = Player.Character or Player.CharacterAdded:Wait()
+HRP = Player.Character:FindFirstChild("HumanoidRootPart")
+if HRP then
+	if CurrentOption == "Grani" then
+		HRP.CFrame = CFrame.new(6737.32, 144.011, 9794.26)
+	elseif CurrentOption == "King Blubb" then
+		HRP.CFrame = CFrame.new(-3723.83, 431.422, -5055.45)
+	else  HRP.CFrame = workspace.QuestNPCs:FindFirstChild(CurrentOption).HumanoidRootPart.CFrame
+	end
+end
+end)
+
+local StatuesFol = workspace.Statues:GetDescendants()
+local StatuesTable = {}
+
+for i,v in pairs(StatuesFol) do
+if v.Name == "ProximityPrompt" and v.Parent.Name == "Attachment" then
+if not table.find(StatuesTable,v.Parent.Parent.Parent.Name) then
+table.insert(StatuesTable,v.Parent.Parent.Parent.Name)
+end
+end
+end
+
+CSection:NewDropdown("Teleport To Class Statue", "Teleports you to the chosen Class Statue", StatuesTable, function(CurrentOption)
+local Player = game:GetService("Players").LocalPlayer 
+local Character = Player.Character or Player.CharacterAdded:Wait()
+HRP = Player.Character:FindFirstChild("HumanoidRootPart")
+
+if HRP then
+HRP.CFrame = workspace.Statues:FindFirstChild(CurrentOption):FindFirstChild("ProximityPrompt", true).Parent.Parent.CFrame
+end
+end)
+
+CSection:NewButton("Teleport To Blackmarket", "Teleports the player to blackmarket", function()
+    local BlackMarket = workspace:FindFirstChild("Stalls"):FindFirstChild("Black Market"):GetDescendants()
+for i,v in pairs(BlackMarket) do
+if v.Name == "Grani" and v.Parent.Parent.Name == "Grani" then
+	local HRP = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+HRP.CFrame = v.CFrame
+end
+end
+end)
+
+CSection:NewButton("Teleport To Vanessa", "Teleports the player to Vanessa(bluemoon fairy)", function()
+local fairy = workspace:FindFirstChild("Vanessa")
+if fairy ~= nil then
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local HRP = Character:FindFirstChild("HumanoidRootPart")
+HRP.CFrame = fairy.HumanoidRootPart.CFrame
+end
+end)
+
+CSection:NewButton("Teleport To Harvestia", "Teleports the player to Harvestia", function()
+local fairy = workspace:FindFirstChild("Harvestia")
+if fairy ~= nil then
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local HRP = Character:FindFirstChild("HumanoidRootPart")
+HRP.CFrame = fairy.HumanoidRootPart.CFrame
+end
+end)
+
+local Players = game:GetService("Players"):GetChildren()
+local onJoinList = {}
+local updateList = {}
+
+local LocalPlayer = game:GetService("Players").LocalPlayer
+
+for i,v in pairs(Players) do
+    if not table.find(onJoinList,v.Name) and v.Name ~= LocalPlayer.Name then
+        table.insert(onJoinList,v.Name)
+    end
+end
+
+local dropdown = CSection:NewDropdown("Teleport To Player", "Teleports you to the player selected", onJoinList, function(CurrentOption)
+local HRP = Player.Character:FindFirstChild("HumanoidRootPart")
+local Players = game:GetService("Players"):GetChildren()
+   for i,v in next, Players do 
+      if v.Name == CurrentOption then
+         HRP.CFrame = v.Character:FindFirstChild("HumanoidRootPart").CFrame
+      end
+   end
+end)
+
+CSection:NewButton("Update Playerlist", "Refreshes Playerlist", function()
+local Players = game:GetService("Players"):GetChildren()
+for i,v in pairs(Players) do
+    if not table.find(updateList,tostring(v.Name)) and v.Name ~= LocalPlayer.Name then
+        table.insert(updateList,tostring(v.Name))
+    end
+end
+  dropdown:Refresh(updateList)
+end)
+
+local DTab = Window:NewTab("Other")
+local DSection = DTab:NewSection("Other")
+
+DSection:NewKeybind("Toggle UI Button", "Toggle UI Button", Enum.KeyCode.LeftControl, function()
+	Library:ToggleUI()
+end)
+
+DSection:NewButton("Infinite Combo ComboSword", "Infinite Combo on any tier of ComboSword", function()
+    -- Variable
+local Player = game.Players.LocalPlayer
+local De = game:GetService("Debris")
+
+-- Function
+function InfCombo(Plr)
+    local head = Plr:WaitForChild("Head")
+    head.DescendantAdded:Connect(function(v)
+        if v:IsA("Script") then
+            De:AddItem(v,0.5)
+        end
+    end)
+end
+
+-- Connect
+player.CharacterAdded:Connect(InfCombo)
+InfCombo(Player.Character)
+end)
+
+DSection:NewButton("InfiniteYield", "InfiniteYield", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+DSection:NewButton("Open all Chests", "Opens all the chests", function()
+    local Chests = workspace:FindFirstChild("Chests"):GetDescendants()
+local HRP = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+for i,v in pairs (Chests) do
+if v.Name == "TouchInterest" and v.Parent.Name == "Giver" and v.Parent.Parent.Parent.Name == "Chests" and v.Parent.Parent.Parent:IsA("Folder") then
+firetouchinterest(HRP,v.Parent,0)
+firetouchinterest(HRP,v.Parent,1)
+end
+end
+end)
+
+local BlubbToggle = true
+
+DSection:NewToggle("Autobuy Blubb's Pizza", "Automatically buys blubb's pizza", function(State)
+BlubbToggle = State
+local args = {
+[1] = "Buy5", [2]=workspace:WaitForChild("Stalls"):WaitForChild("Initus Bay"):WaitForChild("Item Shop"):WaitForChild("Shop"):WaitForChild("Blubb Pizza")
+}
+spawn(function()
+while BlubbToggle and wait(0.1) do
+local Gold = game:GetService("Players").LocalPlayer:FindFirstChild("leaderstats"):FindFirstChild("Gold")
+if Gold.Value > 12500 then
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Effected"):FireServer(unpack(args))
+end
+end
+end)
+end)
+
+local FTab = Window:NewTab("Stats")
+local FSection = FTab:NewSection("Stats")
+
+
+FSection:NewButton("Auto Damage Stat", "Adds +1 to Damage repeatedly", function()
+spawn(function()
+while wait() do
+	local args = {[1]="Invest",[2]="Damage",[3]=1}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Server"):FireServer(unpack(args))
+end
+end)
+end)
+
+FSection:NewButton("Auto Health Stat", "Adds +1 to Health repeatedly", function()
+spawn(function()
+while wait() do
+	local args = {[1]="Invest",[2]="Health",[3]=1}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Server"):FireServer(unpack(args))
+end
+end)
+end)
+
+FSection:NewButton("Auto Magic Stat", "Adds +1 to Magic repeatedly", function()
+spawn(function()
+while wait() do
+	local args = {[1]="Invest",[2]="Magic",[3]=1}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Server"):FireServer(unpack(args))
+end
+end)
+end)
+
+FSection:NewButton("Auto Mana Stat", "Adds +1 to Mana repeatedly", function()
+spawn(function()
+while wait() do
+	local args = {[1]="Invest",[2]="Mana",[3]=1}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Server"):FireServer(unpack(args))
+end
+end)
+end)
+
+FSection:NewButton("Auto Shield Stat", "Adds +1 to Shield repeatedly", function()
+spawn(function()
+while wait() do
+	local args = {[1]="Invest",[2]="Shield",[3]=1}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Server"):FireServer(unpack(args))
+end
+end) 
+end)

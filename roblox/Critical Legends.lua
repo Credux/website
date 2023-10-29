@@ -1,6 +1,6 @@
 local Player = game:GetService("Players").LocalPlayer
 
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Credux/Main/Script/roblox/Critical%20Legends%20Lib.lua"))()
 local Window = Library.CreateLib("Luna's GUI | I SUPPORT LGBTQIA+ |", "GrapeTheme")
 
 local ATab = Window:NewTab("Autofarm")

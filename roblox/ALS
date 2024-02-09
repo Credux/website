@@ -102,6 +102,20 @@ local PlayerSec = Window:MakeTab({
     PremiumOnly = false
 })
 
+PlayerSec:AddButton({
+    Name = "Enable Rollback [DATA]",
+    Callback = function()
+        while task.wait() do
+            local ohTable1 = {
+                ["1"] = "\255"
+            }
+            game:GetService("ReplicatedStorage").Remotes.Data.UpdateHotbar:FireServer(ohTable1)
+            print("Rollback Setup")
+        end
+    end
+})
+
+
 PlayerSec:AddToggle({
     Name = "No Fall-DMG",
     Default = false,
@@ -121,36 +135,6 @@ PlayerSec:AddToggle({
     end
 })
 
-PlayerSec:AddToggle({
-    Name = "Auto-Sprint",
-    Default = false,
-    Save = true,
-    Flag = "AutoSprint",
-    Callback = function(Value)
-        getgenv().AutoSprint = (Value)
-
-        while AutoSprint do
-            local scriptPath = workspace.Living[lp.Name].MovementHandler
-            local closureName = "Sprint"
-            local upvalueIndex = 8
-            local closureConstants = {
-                [1] = "Effects",
-                [2] = "Stunned",
-                [3] = "FindFirstChild",
-                [4] = "NoSprint",
-                [5] = "FightInProgress",
-                [6] = "HumanoidRootPart"
-            }
-
-            local closure = aux.searchClosure(scriptPath, closureName, upvalueIndex, closureConstants)
-            local value = 2
-
-            debug.setupvalue(closure, upvalueIndex, value)
-            task.wait(0.23)
-        end
-    end
-})
-
 PlayerSec:AddButton({
     Name = "Heal At Doctor",
     Callback = function()
@@ -166,15 +150,180 @@ PlayerSec:AddButton({
     end
 })
 
-PlayerSec:AddButton({
-    Name = "Enable Rollback",
-    Callback = function()
-        while task.wait() do
-            local ohTable1 = {
-                ["1"] = "\255"
-            }
-            game:GetService("ReplicatedStorage").Remotes.Data.UpdateHotbar:FireServer(ohTable1)
-            print("Rollback Setup")
+PlayerSec:AddDropdown({
+    Name = "NPCs [TP]",
+    Default = "",
+    Options = NPCList,
+    Callback = function(Value)
+        local CFrameEnd = CFrame.new(game:GetService("Workspace").NPCs[Value]:FindFirstChild("HumanoidRootPart")
+            .Position)
+        local Time = 0
+        local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+            TweenInfo.new(Time), { CFrame = CFrameEnd })
+        tween:Play()
+    end
+})
+
+PlayerSec:AddDropdown({
+    Name = "Quest NPCs [TP]",
+    Default = "",
+    Options = QuestNPCList,
+    Callback = function(Value)
+        local CFrameEnd = CFrame.new(game:GetService("Workspace").NPCs.Quest[Value]:FindFirstChild("HumanoidRootPart")
+            .Position)
+        local Time = 0
+        local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+            TweenInfo.new(Time), { CFrame = CFrameEnd })
+        tween:Play()
+    end
+})
+
+PlayerSec:AddDropdown({
+    Name = "Specific Places [TP]",
+    Default = "",
+    Options = { "Caldera Spawn", "Ruins Spawn", "Westwood Spawn", "Blades Spawn", "Yar'thul Gate", "Inferno Parkour Start", "Inferno Parkour End", "Thorian Gate", "Thorian Past Gate"}, --, "Inferno Parkour Attempt2", "Inferno Parkour Attempt3", "Inferno Parkour Attempt4"},--"Thorian Gate2", "Thorian Gate3", "Thorian Gate4", "Thorian Gate5", "Thorian Gate7", "Thorian Gate8" },
+    Callback = function(Value)
+        if Value == "Caldera Spawn" then
+            local CFrameEnd = CFrame.new(-221.396332, 46.5463257, -3328.51367, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Ruins Spawn" then
+            local CFrameEnd = CFrame.new(-2507.97217, 45.1969986, -2928.76367, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Blades Spawn" then
+            local CFrameEnd = CFrame.new(-2930.36865, -36.1856079, -2022.60095, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Westwood Spawn" then
+            local CFrameEnd = CFrame.new(2531.55249, 388.945129, -3641.91064, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Yar'thul Gate" then
+-- local CFrameEnd = CFrame.new(Left -Right, Up -Down, Front -Back, idk, idk, idk,
+            local CFrameEnd = CFrame.new(-4944.75781, 48.6970673, -3083.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
+                -6.00345373e-08, 1, 5.53878223e-08, -0.999921918, -5.93376726e-08, -0.0124968914)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Inferno Parkour Start" then
+-- Correct path: decrease CFrame.new(-this, N/A, -this
+            local CFrameEnd = CFrame.new(-4354.75781, 78.6970673, -2103.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
+                -6.00345373e-08, 1, 5.53878223e-08, -0.999921918, -5.93376726e-08, -0.0124968914)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Inferno Parkour End" then
+-- Correct path: decrease CFrame.new(-this, N/A, -this
+-- This too: CFrame.new(Front -Reverse, N/A, Left -Right
+            local CFrameEnd = CFrame.new(-4354.75781, 78.6970673, -1603.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
+                -6.00345373e-08, 1, 5.53878223e-08, -0.999921918, -5.93376726e-08, -0.0124968914)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+                        elseif Value == "Inferno Parkour Attempt2" then
+-- Correct path: decrease CFrame.new(-this, N/A, -this
+            local CFrameEnd = CFrame.new(-4354.75781, 78.6970673, -1553.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
+                -6.00345373e-08, 1, 5.53878223e-08, -0.999921918, -5.93376726e-08, -0.0124968914)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+                        elseif Value == "Inferno Parkour Attempt3" then
+-- Correct path: decrease CFrame.new(-this, N/A, -this
+-- This too: CFrame.new(Front -Reverse, N/A, Left -Right
+            local CFrameEnd = CFrame.new(-4354.75781, 78.6970673, -1503.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
+                -6.00345373e-08, 1, 5.53878223e-08, -0.999921918, -5.93376726e-08, -0.0124968914)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+                        elseif Value == "Inferno Parkour Attempt4" then
+  -- NOTICE, DONT MAKE ANY CHANGES YET
+-- Correct path: decrease CFrame.new(-this, N/A, -this
+-- This too: CFrame.new(Front -Reverse, N/A, Left -Right
+            local CFrameEnd = CFrame.new(-4244.75781, 48.6970673, -3103.07324, -0.0124968914, -5.6133743e-08, 0.999921918,
+                -6.00345373e-08, 1, 5.53878223e-08, -0.999921918, -5.93376726e-08, -0.0124968914)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Thorian Gate" then
+            local CFrameEnd = CFrame.new(2415.21777, 24.3336258, -429.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+                -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Thorian Past Gate" then
+            local CFrameEnd = CFrame.new(2320.21777, 24.3336258, -289.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+                -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Thorian Gate1" then
+            local CFrameEnd = CFrame.new(2320.21777, 24.3336258, -289.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+                -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Thorian Gate2" then
+            local CFrameEnd = CFrame.new(2325.21777, 24.3336258, -629.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+                -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Thorian Gate3" then
+            local CFrameEnd = CFrame.new(2330.21777, 24.3336258, -659.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+                -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Thorian Gate4" then
+-- local CFrameEnd = CFrame.new(Left -Right, Up -Down, Front -Back, idk, idk, idk,
+--                -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
+            local CFrameEnd = CFrame.new(2320.21777, 24.3336258, -624.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+                -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Thorian Gate5" then
+            local CFrameEnd = CFrame.new(2320.21777, 24.3336258, -599.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+                -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Thorian Gate7" then
+            local CFrameEnd = CFrame.new(2320.21777, 24.3336258, -574.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+                -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
+        elseif Value == "Thorian Gate8" then
+            local CFrameEnd = CFrame.new(2320.21777, 24.3336258, -549.789001, -0.720241308, -1.32400935e-08, 0.693723619,
+                -3.0820011e-09, 1, 1.58857336e-08, -0.693723619, 9.30350552e-09, -0.720241308)
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(lp.Character.HumanoidRootPart,
+                TweenInfo.new(Time), { CFrame = CFrameEnd })
+            tween:Play()
         end
     end
 })

@@ -1,19 +1,4 @@
--- save test 17
-
-local Weapon2QTE = "N/A"
-
-task.wait()
-local old2
-old2 = hookmetamethod(game, "__namecall", function(self, ...)
-  if self.Name == "RemoteFunction" and getnamecallmethod() == "FireServer" then
-      local args = {...}
-      if args[2] == Weapon2QTE.."QTE" then
-       args[1] = true
-       return old2(self, unpack(args))
-      end
-  end
-  return old2(self, ...)
-end)
+-- save test []
 
 repeat
     wait()
@@ -225,59 +210,6 @@ Combat:AddToggle({
 
             game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohTable1, ohString2)
             task.wait()
-        end
-    end
-})
-
-
-Combat:AddToggle({
-    Name = "Auto-QTE",
-    Default = false,
-    Save = true,
-    Flag = "AutoQTE",
-    Callback = function(Value)
-        getgenv().AutoQTE = (Value)
-        local BaseClass = lp.PlayerGui:WaitForChild("StatMenu").Holder.BaseClassVal
-            .Text
-
-
-        while AutoQTE do
-            task.wait()
-
-            -- Wizard
-            if BaseClass == "Wizard" then
-                local ohBoolean1 = true
-                local ohString2 = "MagicQTE"
-                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
-                lp.PlayerGui.Combat.MagicQTE.Visible = false
-
-                -- Thief
-            elseif BaseClass == "Thief" then
-                local ohBoolean1 = true
-                local ohString2 = "DaggerQTE"
-                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
-                lp.PlayerGui.Combat.DaggerQTE.Visible = false
-
-                -- Slayer
-            elseif BaseClass == "Slayer" then
-                local ohBoolean1 = true
-                local ohString2 = "SpearQTE"
-                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
-                lp.PlayerGui.Combat.SpearQTE.Visible = false
-                -- Fist
-            elseif BaseClass == "Martial Artist" then
-                local ohBoolean1 = true
-                local ohString2 = "FistQTE"
-                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
-                lp.PlayerGui.Combat.FistQTE.Visible = false
-                -- Sword
-            elseif BaseClass == "Warrior" then
-                local ohBoolean1 = true
-                local ohString2 = "SwordQTE"
-                game:GetService("ReplicatedStorage").Remotes.Information.RemoteFunction:FireServer(ohBoolean1, ohString2)
-                lp.PlayerGui.Combat.SwordQTE.Visible = false
-                task.wait()
-            end
         end
     end
 })

@@ -418,6 +418,8 @@ Brew:AddToggle({
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait(0.1)
+                getclicker()
                 local ohString1 = "Equip"
                 local ohString2 = "Carnastool"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)

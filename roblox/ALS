@@ -419,12 +419,11 @@ Brew:AddToggle({
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
                 task.wait()
-                getclicker()
                 local ohString1 = "Equip"
                 local ohString2 = "Carnastool"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
-                task.wait(0.1)
+                task.wait()
                 getclicker()
 
 
@@ -439,7 +438,6 @@ elseif Potion == "Test2" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Ever
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
-                getproximity()
                 task.wait()
                 getclicker() 
 

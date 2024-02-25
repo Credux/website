@@ -340,7 +340,7 @@ local Brew = Automation:AddSection({
 Brew:AddDropdown({
     Name = "Potion To Auto Brew",
     Default = "",
-    Options = { "Test1", "Test2", "Heartbreaking Elixir", "Heartsoothing Remedy", "Minor Energy Elixir", "Abhorrent Elixir", "Alluring Elixir" },
+    Options = { "Heartbreaking Elixir", "Heartsoothing Remedy", "Minor Energy Elixir", "Abhorrent Elixir", "Alluring Elixir" },
     Callback = function(Value)
         Potion = Value
     end
@@ -380,38 +380,44 @@ Brew:AddToggle({
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Carnastool"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
-                task.wait(0.1)
+                task.wait()
                 getclicker()
             elseif Potion == "Heartsoothing Remedy" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Cryastem") then
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Cryastem"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
-                task.wait(0.1)
+                task.wait()
                 getclicker()
             elseif Potion == "Minor Energy Elixir" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Carnastool") then
                 local ohString1 = "Equip"
@@ -447,30 +453,34 @@ elseif Potion == "Test2" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Ever
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Cryastem"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
-                task.wait(0.1)
+                task.wait()
                 getclicker()
             elseif Potion == "Alluring Elixir" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Carnastool") then
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Carnastool"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
-                task.wait(0.1)
+                task.wait()
                 getclicker()
             else
                 OrionLib:MakeNotification({

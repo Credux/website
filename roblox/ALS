@@ -21,22 +21,6 @@ for i, v in next, getgc() do
 end
 -- End Adonis Bypasses
 
-------------------------Anti_AFK----------------------------------
-if getconnections then
-    for _, v in next, getconnections(game:GetService("Players").LocalPlayer.Idled) do
-        v:Disable()
-    end
-end
-
-if not getconnections then
-    game:GetService("Players").LocalPlayer.Idled:connect(
-        function()
-            game:GetService("VirtualUser"):ClickButton2(Vector2.new())
-        end
-    )
-end
-------------------------End_Anti_AFK------------------------------
-
 local NPCList = {}
 local QuestNPCList = {}
 local Moves = {}

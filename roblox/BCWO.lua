@@ -1,4 +1,4 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/Credux/Main/Script/roblox/BCWO%20Men.lua'))()
  
 local Window = Rayfield:CreateWindow({
    Name = "BCW:O Script",

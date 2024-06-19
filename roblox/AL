@@ -1,9 +1,5 @@
--- save test []
-
-repeat
-    wait()
-until game:IsLoaded()
-wait()
+-- save test =
+-- [] ; = # /
 
 -- Not my adonis bypasses - Everything else made by me (OneFool)
 for k, v in pairs(getgc(true)) do
@@ -24,22 +20,6 @@ for i, v in next, getgc() do
     end
 end
 -- End Adonis Bypasses
-
-------------------------Anti_AFK----------------------------------
-if getconnections then
-    for _, v in next, getconnections(game:GetService("Players").LocalPlayer.Idled) do
-        v:Disable()
-    end
-end
-
-if not getconnections then
-    game:GetService("Players").LocalPlayer.Idled:connect(
-        function()
-            game:GetService("VirtualUser"):ClickButton2(Vector2.new())
-        end
-    )
-end
-------------------------End_Anti_AFK------------------------------
 
 local NPCList = {}
 local QuestNPCList = {}
@@ -90,8 +70,8 @@ for _, QuestNPC in next, game:GetService("Workspace").NPCs.Quest:GetChildren() d
     end
 end
 
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Credux/Main/Script/roblox/Arcane%20Lineage%20Hex%20Hub%20Orion%20liB')))()
-local Window = OrionLib:MakeWindow({
+local OrionLibe = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Credux/Main/Script/roblox/Arcane%20Lineage%20Hex%20Hub%20Orion%20liB')))()
+local Window = OrionLibe:MakeWindow({
     Name = "Hex Hub [Mobile]",
     HidePremium = false,
     SaveConfig = true,
@@ -170,15 +150,50 @@ PlayerSec:AddButton({
     end
 })
 
-PlayerSec:AddButton({
-    Name = "Enable Rollback",
-    Callback = function()
-        while task.wait() do
-            local ohTable1 = {
-                ["1"] = "\255"
-            }
-            game:GetService("ReplicatedStorage").Remotes.Data.UpdateHotbar:FireServer(ohTable1)
-            print("Rollback Setup")
+PlayerSec:AddToggle({
+    Name = "Enable Walkspeed",
+    Default = false,
+    Callback = function(Value)
+        Walkspeeder = (Value)
+    end
+})
+
+PlayerSec:AddSlider({
+    Name = "Walkspeed",
+    Min = tonumber(lp.Character.Humanoid.WalkSpeed),
+    Max = 250,
+    Default = tonumber(lp.Character.Humanoid.WalkSpeed),
+    Color = Color3.fromRGB(255, 0, 0),
+    Increment = 1,
+    ValueName = "Walkspeed",
+    Callback = function(Value)
+        while Walkspeeder == true do
+            lp.Character.Humanoid.WalkSpeed = (Value)
+            task.wait()
+        end
+    end
+})
+
+PlayerSec:AddToggle({
+    Name = "Enable JumpPower",
+    Default = false,
+    Callback = function(Value)
+        JumpPowerr = (Value)
+    end
+})
+
+PlayerSec:AddSlider({
+    Name = "JumpPower",
+    Min = tonumber(lp.Character.Humanoid.JumpPower),
+    Max = 250,
+    Default = tonumber(lp.Character.Humanoid.JumpPower),
+    Color = Color3.fromRGB(255, 0, 0),
+    Increment = 1,
+    ValueName = "JumpPower",
+    Callback = function(Value)
+        while JumpPowerr == true do
+            lp.Character.Humanoid.JumpPower = (Value)
+            task.wait()
         end
     end
 })
@@ -349,79 +364,107 @@ Brew:AddToggle({
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Carnastool"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
-                task.wait(0.1)
+                task.wait()
                 getclicker()
             elseif Potion == "Heartsoothing Remedy" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Cryastem") then
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Cryastem"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
-                task.wait(0.1)
+                task.wait()
                 getclicker()
             elseif Potion == "Minor Energy Elixir" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Carnastool") then
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Carnastool"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
-                task.wait(0.1)
+                task.wait()
                 getclicker()
+
+
+
+elseif Potion == "Test1" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Carnastool") then
+                local ohString1 = "Equip"
+                local ohString2 = "Everthistle"
+                game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
+                getproximity()
+                task.wait()
+elseif Potion == "Test2" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Carnastool") then
+                local ohString1 = "Equip"
+                local ohString2 = "Everthistle"
+                game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
+                task.wait()
+                getclicker() 
+
+
             elseif Potion == "Abhorrent Elixir" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Cryastem") then
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Cryastem"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
-                task.wait(0.1)
+                task.wait()
                 getclicker()
             elseif Potion == "Alluring Elixir" and AutoBrew and lp.Backpack.Tools:FindFirstChild("Everthistle") and lp.Backpack.Tools:FindFirstChild("Carnastool") then
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Everthistle"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
+                task.wait()
                 local ohString1 = "Equip"
                 local ohString2 = "Carnastool"
                 game:GetService("ReplicatedStorage").Remotes.Information.InventoryManage:FireServer(ohString1, ohString2)
                 getproximity()
-                task.wait(0.1)
+                task.wait()
                 getclicker()
             else
                 OrionLib:MakeNotification({
@@ -693,4 +736,17 @@ Misc:AddButton({
     end
 })
 
-OrionLib:Init()
+Misc:AddButton({
+    Name = "Rejoin",
+    Callback = function()
+        local ts = game:GetService("TeleportService")
+        local p = lp
+        ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
+    end
+})
+
+local AntiAFK = Misc:AddSection({
+    Name = "Anti-AFK Built In"
+})
+
+OrionLibe:Init()

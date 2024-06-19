@@ -70,8 +70,8 @@ for _, QuestNPC in next, game:GetService("Workspace").NPCs.Quest:GetChildren() d
     end
 end
 
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Credux/Main/Script/roblox/Arcane%20Lineage%20Hex%20Hub%20Orion%20liB')))()
-local Window = OrionLib:MakeWindow({
+local OrionLibe = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Credux/Main/Script/roblox/Arcane%20Lineage%20Hex%20Hub%20Orion%20liB')))()
+local Window = OrionLibe:MakeWindow({
     Name = "Hex Hub [Mobile]",
     HidePremium = false,
     SaveConfig = true,
@@ -749,4 +749,4 @@ local AntiAFK = Misc:AddSection({
     Name = "Anti-AFK Built In"
 })
 
-OrionLib:Init()
+OrionLibe:Init()

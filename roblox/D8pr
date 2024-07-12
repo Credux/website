@@ -1,0 +1,5 @@
+      local ohTable1 = {
+        ["1"] = "\255"
+      }
+      game:GetService("ReplicatedStorage").Remotes.Data.UpdateHotbar:FireServer(ohTable1)
+      print("Rollback Setup")

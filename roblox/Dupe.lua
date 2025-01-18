@@ -16,8 +16,10 @@ for i, v in next, getgc() do
     end
 end
 
-local ohTable1 = {
-  ["1"] = "\255"
-}
-game:GetService("ReplicatedStorage").Remotes.Data.UpdateHotbar:FireServer(ohTable1)
-print("Rollback Setup")
+        while task.wait() do
+            local ohTable1 = {
+                ["1"] = "\255"
+            }
+            game:GetService("ReplicatedStorage").Remotes.Data.UpdateHotbar:FireServer(ohTable1)
+            print("Rollback Setup")
+        end
